@@ -1,0 +1,28 @@
+.navbar {
+  background-color: burlywood;
+  height: 44px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+}
+
+.leftNav {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.rightNav {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 800px;
+}
+
+.rightNav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.rightNav a {
+  margin: 0 20px;
+}

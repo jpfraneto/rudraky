@@ -1,0 +1,35 @@
+.component {
+  padding: 8px;
+  background: rgba(0, 20, 255, 1);
+  border: solid white 2px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  width: 600px;
+}
+
+.userImage {
+  border-radius: 100%;
+}
+
+.userImageContainer {
+  width: 20%;
+  text-align: center;
+}
+
+.kriyaInformationContainer {
+  width: 80%;
+  display: flex;
+}
+
+.kriyaInformationContainer p {
+  margin: 0;
+}
+
+.kriyaInfo {
+  width: 80%;
+}
+
+.summary {
+  width: 20%;
+}
