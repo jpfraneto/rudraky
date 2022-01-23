@@ -1,34 +1,53 @@
 import styles from '../styles/Login.module.css';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { magic } from '../lib/magic-client';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [userMsg, setUserMsg] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
+
+  useEffect(() => {
+    const handleComplete = () => {
+      setIsLoading(false);
+    };
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+    return () => {
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
+    };
+  }, []);
+
   const handleOnChangeEmail = e => {
     setUserMsg('');
     setEmail(e.target.value);
   };
+
   const handleLoginWithEmail = async e => {
     e.preventDefault();
     if (email.includes('@')) {
       if (email === 'jpfraneto@gmail.com') {
         try {
+          setIsLoading(true);
           const didToken = await magic.auth.loginWithMagicLink({ email });
-          console.log('tje did token is: ', didToken);
           if (didToken) {
             router.push('/');
           }
         } catch (err) {
+          setIsLoading(false);
           console.error('Something went wrong logging in', error);
         }
       } else {
+        setIsLoading(false);
         setUserMsg('Ocurrió un error con ese email');
       }
     } else {
+      setIsLoading(false);
       setUserMsg('Por favor ingresa un email válido!');
     }
   };
@@ -51,7 +70,7 @@ const Login = () => {
           </div>
 
           <button onClick={handleLoginWithEmail} className={styles.loginBtn}>
-            Entrar
+            {isLoading ? 'Cargando...' : 'Entrar'}
           </button>
         </div>
       </div>

@@ -5,6 +5,7 @@
   justify-content: space-between;
   padding: 0 30px;
   align-items: center;
+  z-index: 50;
 }
 
 .leftNav {
@@ -24,4 +25,41 @@
 
 .rightNav a {
   margin: 0 20px;
+}
+
+.usernameBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: black;
+  cursor: pointer;
+}
+
+.navDropdownWrapper {
+  position: absolute;
+  margin-left: auto;
+  right: 0px;
+  margin-top: 0.5rem /* 8px */;
+  padding-top: 0.5rem /* 8px */;
+  padding-bottom: 0.5rem /* 8px */;
+  padding-right: 0.5rem;
+  background-color: black;
+  border-width: 1px;
+  color: white;
+  border-radius: 0.25rem /* 4px */;
+  border-color: blue;
+}
+
+.navDropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.navDropdown li {
+  line-height: 2rem;
+}
+
+.navDropdown li :hover {
+  color: rgb(192, 177, 177);
 }
