@@ -1,7 +1,6 @@
 import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { magic } from '../../lib/magic-client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -11,35 +10,11 @@ const Navbar = () => {
 
   const router = useRouter();
 
-  useEffect(async () => {
-    try {
-      console.log('the user is: ', magic.user);
-      const { email } = await magic.user.getMetadata();
-      if (email) {
-        setUsername(email);
-      }
-    } catch (error) {
-      console.error('Error retrieving email');
-    }
-  }, []);
-
   const handleDropdown = e => {
     e.preventDefault();
     if (username) {
       setShowDropdown(!showDropdown);
     } else {
-      router.push('/login');
-    }
-  };
-
-  const handleSignOut = async e => {
-    e.preventDefault();
-    try {
-      await magic.user.logout();
-      console.log(await magic.user.isLoggedIn());
-      router.push('/login');
-    } catch (error) {
-      console.error('There was an error logging out the user');
       router.push('/login');
     }
   };
@@ -89,7 +64,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <a onClick={handleSignOut}>Cerrar Sesion</a>
+                      <a>Cerrar Sesion</a>
                     </li>
                   </ul>
                   <div className={styles.lineWrapper}></div>

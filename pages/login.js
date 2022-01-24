@@ -2,7 +2,6 @@ import styles from '../styles/Login.module.css';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { magic } from '../lib/magic-client';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,18 +9,6 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-
-  useEffect(() => {
-    const handleComplete = () => {
-      setIsLoading(false);
-    };
-    router.events.on('routeChangeComplete', handleComplete);
-    router.events.on('routeChangeError', handleComplete);
-    return () => {
-      router.events.off('routeChangeComplete', handleComplete);
-      router.events.off('routeChangeError', handleComplete);
-    };
-  }, []);
 
   const handleOnChangeEmail = e => {
     setUserMsg('');
@@ -32,12 +19,12 @@ const Login = () => {
     e.preventDefault();
     if (email.includes('@')) {
       if (email === 'jpfraneto@gmail.com') {
+        console.log('the email is: ', email);
         try {
           setIsLoading(true);
-          const didToken = await magic.auth.loginWithMagicLink({ email });
-          if (didToken) {
-            router.push('/');
-          }
+          const res = await fetch('/api/users');
+          const data = await res.json();
+          console.log('the data from the server is: ', data);
         } catch (err) {
           setIsLoading(false);
           console.error('Something went wrong logging in', error);

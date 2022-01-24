@@ -10,7 +10,7 @@ export default function Home() {
         <title>Rudra KY</title>
         <meta
           name='description'
-          content='Awakening the Kundalini Energy With the heat that comes from commitment to do the work'
+          content='Desenrollando la energía kundalini en conjunto'
         />
         <link rel='icon' href='/favicon.ico' />
       </Head>
