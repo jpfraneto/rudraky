@@ -48,9 +48,9 @@ const updateUser = async (req, res) => {
   let { db } = await connectToDatabase();
   await db.collection('users').updateOne(
     {
-      _id: new ObjectId(req.body),
+      _id: new ObjectId(req.body.userId),
     },
-    { $set: { published: true } }
+    { $set: { text: req.body.updateText } }
   );
   return res.json({
     message: 'User updated successfully',

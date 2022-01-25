@@ -43,6 +43,11 @@ const Navbar = () => {
               <a>Teoría</a>
             </Link>
           </li>
+          <li className={styles.navItem}>
+            <Link href='/kriya'>
+              <a>Kriya</a>
+            </Link>
+          </li>
           <li>
             <div className={styles.navContainer}>
               <p className={styles.usernameBtn} onClick={handleDropdown}>

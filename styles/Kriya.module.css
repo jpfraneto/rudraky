@@ -1,0 +1,81 @@
+.container {
+  background-color: rgb(207, 136, 103);
+  height: calc(100vh - 40px);
+  display: flex;
+  position: relative;
+}
+
+.cronometro {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  background-color: tomato;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.leftDiv {
+  height: 100%;
+  width: 50%;
+  background-color: cornsilk;
+}
+
+.rightDiv {
+  height: 100%;
+  width: 50%;
+  background-color: yellowgreen;
+  padding: 40px;
+  text-align: center;
+}
+
+.innerWrapper {
+  margin-top: 14px;
+  display: flex;
+  width: 100%;
+  height: 80vh;
+  border: solid 3px black;
+}
+
+.classStructure {
+  height: 100%;
+  width: 33%;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+}
+
+.classDefinition {
+  height: 100%;
+  width: 67%;
+  background-color: rebeccapurple;
+}
+
+.elements > * {
+  padding: 2px;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.chosenSection {
+  background-color: royalblue;
+  flex-grow: 1;
+  margin: 8px;
+  position: relative;
+}
+
+.closeCross {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  cursor: pointer;
+}
+
+.newExercizeContainer {
+  width: 80%;
+  height: 80%;
+  background-color: salmon;
+  margin: 20px auto;
+  border: solid black 2px;
+}

@@ -5,6 +5,9 @@ import { useState } from 'react';
 const Register = () => {
   const [name, setName] = useState('');
   const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState('');
+  const [updateText, setUpdateText] = useState('');
+
   const onNameChange = e => {
     e.preventDefault();
     setName(e.target.value);
@@ -29,10 +32,18 @@ const Register = () => {
   const handleUserUpdate = async () => {
     const res = await fetch('/api/users', {
       method: 'PUT',
-      body: 'wena choro',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: 'wena choro',
+        userId: selectedUser,
+        updateText,
+      }),
     });
-    const data = await req.json();
+    const data = await res.json();
     console.log('the data after the update is: ', data);
+  };
+  const handleUpdateText = e => {
+    setUpdateText(e.target.value);
   };
   return (
     <div className={styles.mainContainer}>
@@ -40,8 +51,12 @@ const Register = () => {
         <title>Registrar una nueva cuenta to RudraKY</title>
       </Head>
       <div className={styles.loginDiv}>
-        {name && `the name is ${name}`}
         <div className={styles.wrapper}>
+          {selectedUser && <strong>Selected User's Id: {selectedUser}</strong>}
+          {name && `the name is ${name}`}
+          <br />
+          {updateText && `the update text is ${updateText}`}
+          <hr />
           <form onSubmit={registerHandler}>
             <input
               onChange={onNameChange}
@@ -51,7 +66,18 @@ const Register = () => {
             <button type='submit'>Submit</button>
           </form>
           {users &&
-            users.map(user => <p>{`${user.username}'s ID is: ${user._id}`}</p>)}
+            users.map(user => (
+              <p
+                onClick={() => {
+                  setSelectedUser(user._id);
+                }}
+              >{`${user.username}'s ID is: ${user._id}`}</p>
+            ))}
+          <input
+            type='text'
+            onChange={handleUpdateText}
+            placeholder='Enter text to update'
+          />
         </div>
         <button onClick={handleGetUserIds}>Get User IDS</button>
         <button onClick={handleUserUpdate}>Update User</button>
