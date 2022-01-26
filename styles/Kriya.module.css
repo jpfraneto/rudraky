@@ -1,19 +1,8 @@
 .container {
   background-color: rgb(207, 136, 103);
-  height: calc(100vh - 40px);
+  height: calc(100vh - 44px);
   display: flex;
   position: relative;
-}
-
-.cronometro {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  background-color: tomato;
-  padding: 10px;
-  border-radius: 5px;
 }
 
 .leftDiv {

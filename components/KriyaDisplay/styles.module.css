@@ -1,0 +1,24 @@
+.mainContainer {
+  width: 100%;
+  height: 100%;
+  background-color: khaki;
+  padding: 33px;
+  border: solid black 2px;
+  text-align: center;
+}
+
+.kriyaNavbar > * {
+  margin: 0 8px;
+  padding: 4px;
+  background-color: olive;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.kriyaSection {
+  background-color: rgb(206, 206, 36);
+  border: solid black 2px;
+  margin-top: 30px;
+  height: 80%;
+}

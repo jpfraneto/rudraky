@@ -2,9 +2,12 @@
   background-color: rosybrown;
   padding: 2px;
   margin: 4px;
-  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  padding: 7px;
 }
 
-.container:hover {
-  background-color: royalblue;
+.openStopwatch:hover {
+  color: olive;
+  cursor: pointer;
 }

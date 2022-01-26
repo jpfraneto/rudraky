@@ -1,6 +1,9 @@
 import styles from '../styles/Kriya.module.css';
 import KriyaElement from '../components/KriyaElement';
+import KriyaDisplay from '../components/KriyaDisplay';
+import Stopwatch from '../components/Stopwatch';
 import { useState } from 'react';
+import StopwatchContainer from '../components/StopwatchContainer';
 const sections = [
   'Invocacion',
   'Calentamiento',
@@ -9,9 +12,50 @@ const sections = [
   'Meditacion',
   'Cierre',
 ];
+const chosenKriya = [
+  {
+    section: 'Invocacion',
+    ejercicios: [
+      { name: 'a', duration: 2, complete: false },
+      { name: 'b', duration: 23, complete: false },
+    ],
+  },
+  {
+    section: 'Calentamiento',
+    ejercicios: [
+      {
+        name: 'Respiracion de Fuego',
+        duration: 188,
+        reps: null,
+        complete: false,
+      },
+      { name: 'Saludos al Sol', duration: null, reps: 3, complete: false },
+    ],
+  },
+  {
+    section: 'Kriya',
+    ejercicios: [
+      { name: 'Sat Kriya', duration: 188, complete: false },
+      { name: 'Flexiones Espinales', duration: 111, complete: false },
+    ],
+  },
+  {
+    section: 'Relajacion',
+    ejercicios: [{ name: 'Relajacion', duration: 600, complete: false }],
+  },
+  {
+    section: 'Meditacion',
+    ejercicios: [{ name: 'Meditacion', duration: 444, complete: false }],
+  },
+  {
+    section: 'Cierre',
+    ejercicios: [{ name: 'Cierre', duration: null, complete: false }],
+  },
+];
 
 const Kriya = () => {
-  const [cronometro, setCronometro] = useState('88:88:88');
+  const [showStopwatch, setShowStopwatch] = useState(false);
+  const [targetDuration, setTargetDuration] = useState(0);
   const [selectedSection, setSelectedSection] = useState('');
   const [showNewExercize, setShowNewExercize] = useState(false);
   const [newEx, setNewEx] = useState({});
@@ -47,37 +91,32 @@ const Kriya = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.cronometro}>{cronometro}</h2>
-      <div className={styles.leftDiv}></div>
+      {showStopwatch && (
+        <StopwatchContainer
+          targetDuration={targetDuration}
+          setShowStopwatch={setShowStopwatch}
+        />
+      )}
+      <div className={styles.leftDiv}>
+        <KriyaDisplay
+          setShowStopwatch={setShowStopwatch}
+          setTargetDuration={setTargetDuration}
+          kriya={chosenKriya}
+        />
+      </div>
       <div className={styles.rightDiv}>
         <h3>Arma tu Kriya</h3>
         <div className={styles.innerWrapper}>
-          <div className={styles.classStructure}>
-            <div className={styles.elements}>
-              {sections.map(section => (
-                <KriyaElement
-                  handleChooseSection={handleChooseSection}
-                  name={section}
-                />
-              ))}
-            </div>
-
-            {selectedSection && (
-              <div className={styles.chosenSection}>
-                <span
-                  onClick={() => {
-                    setSelectedSection('');
-                  }}
-                  className={styles.closeCross}
-                >
-                  ❌
-                </span>
-                <h2>{selectedSection}</h2>
-              </div>
-            )}
-          </div>
+          <div className={styles.classStructure}></div>
           <div className={styles.classDefinition}>
             <button onClick={handleNewExercize}>Nuevo Ejercicio</button>
+            <button
+              onClick={() => {
+                setShowStopwatch(true);
+              }}
+            >
+              Show stopwatch
+            </button>
             {showNewExercize && (
               <div className={styles.newExercizeContainer}>
                 <h4>Agrega un nuevo ejercicio</h4>
@@ -111,8 +150,10 @@ const Kriya = () => {
                     <button type='submit'>Agregar a {selectedSection}</button>
                   ) : (
                     <select onChange={e => handleChooseSection(e.target.value)}>
-                      {sections.map(section => (
-                        <option value={section}>{section}</option>
+                      {sections.map((section, i) => (
+                        <option key={i} value={section}>
+                          {section}
+                        </option>
                       ))}
                     </select>
                   )}

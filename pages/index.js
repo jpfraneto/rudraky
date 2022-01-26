@@ -22,26 +22,7 @@ export default function Home() {
           <NewKriya name='Ana Lucia' />
           <NewKriya name='Ana Cristina' />
         </div>
-        <div className={styles.rightMain}>
-          <Image
-            className={styles.userImage}
-            src='/images/sebaparra.jpeg'
-            width={100}
-            height={100}
-          />
-          <Image
-            className={styles.userImage}
-            src='/images/sebaparra.jpeg'
-            width={100}
-            height={100}
-          />
-          <Image
-            className={styles.userImage}
-            src='/images/sebaparra.jpeg'
-            width={100}
-            height={100}
-          />
-        </div>
+        <div className={styles.rightMain}></div>
       </main>
     </div>
   );

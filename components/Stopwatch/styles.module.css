@@ -1,0 +1,47 @@
+.mainContainer {
+  height: 80%;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.mainContainer h4 {
+  margin: 0;
+}
+
+.controlsContainer {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  width: 100%;
+}
+
+.controlsContainer > * {
+  margin: 0 5px;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.messagesContainer {
+  animation: fadeIn 2s linear;
+}
+
+.timeAlert {
+  color: white;
+  font-size: 2rem;
+}
+
+.subText {
+  font-size: 0.5rem;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
