@@ -12,44 +12,51 @@ const sections = [
   'Meditacion',
   'Cierre',
 ];
+
 const chosenKriya = [
+  { section: 'Invocacion', name: 'a', duration: 2, complete: false },
+  { section: 'Invocacion', name: 'b', duration: 2, complete: false },
   {
-    section: 'Invocacion',
-    ejercicios: [
-      { name: 'a', duration: 2, complete: false },
-      { name: 'b', duration: 23, complete: false },
-    ],
+    section: 'Calentamiento',
+    name: 'Respiracion de Fuego',
+    duration: 188,
+    complete: false,
   },
   {
     section: 'Calentamiento',
-    ejercicios: [
-      {
-        name: 'Respiracion de Fuego',
-        duration: 188,
-        reps: null,
-        complete: false,
-      },
-      { name: 'Saludos al Sol', duration: null, reps: 3, complete: false },
-    ],
+    name: 'Saludos al Sol',
+    duration: '3 reps',
+    complete: false,
   },
   {
     section: 'Kriya',
-    ejercicios: [
-      { name: 'Sat Kriya', duration: 188, complete: false },
-      { name: 'Flexiones Espinales', duration: 111, complete: false },
-    ],
+    name: 'Sat Kriya',
+    duration: 188,
+    complete: false,
   },
   {
-    section: 'Relajacion',
-    ejercicios: [{ name: 'Relajacion', duration: 600, complete: false }],
+    section: 'Kriya',
+    name: 'Flexiones Espinales',
+    duration: 33,
+    complete: false,
   },
   {
-    section: 'Meditacion',
-    ejercicios: [{ name: 'Meditacion', duration: 444, complete: false }],
+    section: 'Relajación',
+    name: 'Relajacion',
+    duration: 600,
+    complete: false,
+  },
+  {
+    section: 'Meditación',
+    name: 'Corazón Tranquilo',
+    duration: 444,
+    complete: false,
   },
   {
     section: 'Cierre',
-    ejercicios: [{ name: 'Cierre', duration: null, complete: false }],
+    name: 'Corazón Tranquilo',
+    duration: 33,
+    complete: false,
   },
 ];
 
@@ -57,6 +64,8 @@ const Kriya = () => {
   const [showStopwatch, setShowStopwatch] = useState(false);
   const [targetDuration, setTargetDuration] = useState(0);
   const [selectedSection, setSelectedSection] = useState('');
+  const [thisKriya, setThisKriya] = useState(chosenKriya);
+  const [currentEx, setCurrentEx] = useState({});
   const [showNewExercize, setShowNewExercize] = useState(false);
   const [newEx, setNewEx] = useState({});
 
@@ -94,6 +103,9 @@ const Kriya = () => {
       {showStopwatch && (
         <StopwatchContainer
           targetDuration={targetDuration}
+          currentEx={currentEx}
+          thisKriya={thisKriya}
+          setThisKriya={setThisKriya}
           setShowStopwatch={setShowStopwatch}
         />
       )}
@@ -101,10 +113,12 @@ const Kriya = () => {
         <KriyaDisplay
           setShowStopwatch={setShowStopwatch}
           setTargetDuration={setTargetDuration}
-          kriya={chosenKriya}
+          thisKriya={thisKriya}
+          setThisKriya={setThisKriya}
+          setCurrentEx={setCurrentEx}
         />
       </div>
-      <div className={styles.rightDiv}>
+      {/* <div className={styles.rightDiv}>
         <h3>Arma tu Kriya</h3>
         <div className={styles.innerWrapper}>
           <div className={styles.classStructure}></div>
@@ -162,8 +176,8 @@ const Kriya = () => {
             )}
           </div>
         </div>
-        <button onClick={handlePrinter}>Print Ex</button>
-      </div>
+        <button onClick={() => console.log(currentEx)}>Print Ex</button>
+      </div> */}
     </div>
   );
 };

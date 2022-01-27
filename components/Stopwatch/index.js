@@ -1,25 +1,34 @@
 import styles from './styles.module.css';
+import KriyaElement from '../KriyaElement';
 import { useState } from 'react';
 import { useEffect } from 'react/cjs/react.development';
 
-const Stopwatch = ({ targetDuration }) => {
+const Stopwatch = ({ currentEx, thisKriya, setThisKriya }) => {
   const [start, setStart] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [started, setStarted] = useState(false);
+
+  const targetDuration = currentEx.duration;
 
   useEffect(() => {
     const interval = null;
     if (start) {
       setStarted(true);
       interval = setInterval(() => {
-        setElapsedTime(prevTime => prevTime + 1);
+        setElapsedTime(prevTime => {
+          if (prevTime === targetDuration) {
+            const updatedKriya = [...thisKriya];
+            console.log(thisKriya[0]['ejercicios'][0]);
+            console.log('the updated kriya is: ', updatedKriya);
+          }
+          return prevTime + 1;
+        });
       }, 1000);
     } else {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
   }, [start]);
-
   const secsToTime = s => {
     const mins = Math.floor(s / 60);
     const secs = s % 60;
@@ -28,7 +37,12 @@ const Stopwatch = ({ targetDuration }) => {
 
   return (
     <div className={styles.mainContainer}>
-      <h4>{secsToTime(elapsedTime)}</h4>
+      <h4>
+        <span style={{ color: targetDuration <= elapsedTime && 'white' }}>
+          {secsToTime(elapsedTime)}
+        </span>{' '}
+        de {secsToTime(targetDuration)}
+      </h4>
       {targetDuration <= elapsedTime && (
         <div className={styles.messagesContainer}>
           <p className={styles.timeAlert}>Tiempo!</p>
@@ -37,6 +51,8 @@ const Stopwatch = ({ targetDuration }) => {
           </p>
         </div>
       )}
+      {/* <p>Siguiente ejercicio: </p> */}
+      {/* <KriyaElement /> */}
       <div className={styles.controlsContainer}>
         {!started && <button onClick={() => setStart(true)}>Empezar</button>}
         {start && <button onClick={() => setStart(false)}>Parar</button>}
@@ -50,15 +66,20 @@ const Stopwatch = ({ targetDuration }) => {
           </button>
         )}
         {started && (
-          <button
-            onClick={() => {
-              setElapsedTime(0);
-              setStart(false);
-              setStarted(false);
-            }}
-          >
-            Reiniciar
-          </button>
+          <>
+            <button
+              onClick={() => {
+                setElapsedTime(0);
+                setStart(false);
+                setStarted(false);
+              }}
+            >
+              Reiniciar
+            </button>
+            <button onClick={() => alert('siguiente ejercicio!')}>
+              Siguiente Ejercicio
+            </button>
+          </>
         )}
       </div>
     </div>

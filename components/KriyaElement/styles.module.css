@@ -1,8 +1,9 @@
 .container {
   background-color: rosybrown;
   padding: 2px;
-  margin: 4px;
-  display: inline-block;
+  margin: 4px auto;
+  display: block;
+  width: fit-content;
   border-radius: 8px;
   padding: 7px;
 }

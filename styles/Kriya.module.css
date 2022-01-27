@@ -7,17 +7,17 @@
 
 .leftDiv {
   height: 100%;
-  width: 50%;
+  width: 100%;
   background-color: cornsilk;
 }
-
+/* 
 .rightDiv {
   height: 100%;
   width: 50%;
   background-color: yellowgreen;
   padding: 40px;
   text-align: center;
-}
+} */
 
 .innerWrapper {
   margin-top: 14px;

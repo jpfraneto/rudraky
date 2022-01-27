@@ -22,3 +22,14 @@
   margin-top: 30px;
   height: 80%;
 }
+
+.ejercicio {
+  display: flex;
+  justify-content: center;
+  margin: 8px auto;
+  width: fit-content;
+}
+
+.ejercicio span {
+  margin: 0 40px;
+}

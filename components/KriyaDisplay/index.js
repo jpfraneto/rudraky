@@ -2,16 +2,21 @@ import styles from './styles.module.css';
 import KriyaElement from '../KriyaElement';
 import { useState } from 'react';
 
-const KriyaDisplay = ({ kriya, setTargetDuration, setShowStopwatch }) => {
+const KriyaDisplay = ({ thisKriya, setCurrentEx, setShowStopwatch }) => {
   const [chosenSection, setChosenSection] = useState(null);
 
   return (
     <div className={styles.mainContainer}>
       <div className={styles.kriyaNavbar}>
-        {kriya.map((section, id) => (
-          <button onClick={() => setChosenSection(section)} key={id}>
+        {/* <button onClick={() => setChosenSection(section)} key={id}>
             {section.section}
-          </button>
+          </button> */}
+        {thisKriya.map((ex, id) => (
+          <div className={styles.ejercicio}>
+            <span>{ex.section} </span>
+            <span>{ex.name}</span>
+            <span>{ex.duration}</span>
+          </div>
         ))}
       </div>
       {chosenSection && (
@@ -22,7 +27,7 @@ const KriyaDisplay = ({ kriya, setTargetDuration, setShowStopwatch }) => {
               ej={ej}
               key={i}
               setShowStopwatch={setShowStopwatch}
-              setTargetDuration={setTargetDuration}
+              setCurrentEx={setCurrentEx}
             />
           ))}
         </div>

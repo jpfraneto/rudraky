@@ -1,24 +1,27 @@
 import styles from './styles.module.css';
 
-const KriyaElement = ({
-  ej,
-  setTargetDuration,
-  setShowStopwatch,
-  handleChooseSection,
-}) => {
+const KriyaElement = ({ ej, setShowStopwatch, setCurrentEx }) => {
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{ backgroundColor: ej.complete && 'white' }}
+    >
       <p>
-        {ej.name}, {ej.duration} segundos -{' '}
-        <span
-          className={styles.openStopwatch}
-          onClick={() => {
-            setShowStopwatch(true);
-            setTargetDuration(ej.duration);
-          }}
-        >
-          Abrir Cronómetro
-        </span>
+        {ej.name}
+        {ej.duration && (
+          <span>
+            {' - '}
+            <span
+              className={styles.openStopwatch}
+              onClick={() => {
+                setShowStopwatch(true);
+                setCurrentEx(ej);
+              }}
+            >
+              Abrir Cronómetro ⏰ ({ej.duration} segundos )
+            </span>
+          </span>
+        )}
       </p>
     </div>
   );
