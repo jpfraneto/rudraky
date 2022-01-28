@@ -1,8 +1,8 @@
 import styles from '../styles/Kriya.module.css';
-import KriyaElement from '../components/KriyaElement';
+import ActiveKriyaDisplay from '../components/ActiveKriyaDisplay';
 import KriyaDisplay from '../components/KriyaDisplay';
 import Stopwatch from '../components/Stopwatch';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import StopwatchContainer from '../components/StopwatchContainer';
 const sections = [
   'Invocacion',
@@ -14,18 +14,24 @@ const sections = [
 ];
 
 const chosenKriya = [
-  { section: 'Invocacion', name: 'a', duration: 2, complete: false },
-  { section: 'Invocacion', name: 'b', duration: 2, complete: false },
+  {
+    section: 'Invocacion',
+    description: 'Ong namo gurudev namo',
+    name: 'Adi Mantra',
+    duration: 88,
+    complete: false,
+  },
   {
     section: 'Calentamiento',
     name: 'Respiracion de Fuego',
+    description: 'Respiración desde el abdomen bombeando el punto abdominal',
     duration: 188,
     complete: false,
   },
   {
     section: 'Calentamiento',
     name: 'Saludos al Sol',
-    duration: '3 reps',
+    duration: '3',
     complete: false,
   },
   {
@@ -37,7 +43,7 @@ const chosenKriya = [
   {
     section: 'Kriya',
     name: 'Flexiones Espinales',
-    duration: 33,
+    duration: '108',
     complete: false,
   },
   {
@@ -54,20 +60,22 @@ const chosenKriya = [
   },
   {
     section: 'Cierre',
-    name: 'Corazón Tranquilo',
-    duration: 33,
+    name: 'Eterno Sol',
+    duration: '3',
     complete: false,
   },
 ];
 
 const Kriya = () => {
   const [showStopwatch, setShowStopwatch] = useState(false);
-  const [targetDuration, setTargetDuration] = useState(0);
-  const [selectedSection, setSelectedSection] = useState('');
+  const [currentExIndex, setCurrentExIndex] = useState(0);
   const [thisKriya, setThisKriya] = useState(chosenKriya);
   const [currentEx, setCurrentEx] = useState({});
   const [showNewExercize, setShowNewExercize] = useState(false);
   const [newEx, setNewEx] = useState({});
+  const [startedKriya, setStartedKriya] = useState(false);
+
+  const activeKriyaRef = useRef(null);
 
   const handleChooseSection = name => {
     setSelectedSection(name);
@@ -100,84 +108,32 @@ const Kriya = () => {
 
   return (
     <div className={styles.container}>
-      {showStopwatch && (
-        <StopwatchContainer
-          targetDuration={targetDuration}
-          currentEx={currentEx}
-          thisKriya={thisKriya}
-          setThisKriya={setThisKriya}
-          setShowStopwatch={setShowStopwatch}
-        />
-      )}
       <div className={styles.leftDiv}>
         <KriyaDisplay
+          activeKriyaRef={activeKriyaRef}
           setShowStopwatch={setShowStopwatch}
-          setTargetDuration={setTargetDuration}
           thisKriya={thisKriya}
-          setThisKriya={setThisKriya}
           setCurrentEx={setCurrentEx}
+          currentExIndex={currentExIndex}
+          setCurrentExIndex={setCurrentExIndex}
+          setStartedKriya={setStartedKriya}
+          startedKriya={startedKriya}
         />
       </div>
-      {/* <div className={styles.rightDiv}>
-        <h3>Arma tu Kriya</h3>
-        <div className={styles.innerWrapper}>
-          <div className={styles.classStructure}></div>
-          <div className={styles.classDefinition}>
-            <button onClick={handleNewExercize}>Nuevo Ejercicio</button>
-            <button
-              onClick={() => {
-                setShowStopwatch(true);
-              }}
-            >
-              Show stopwatch
-            </button>
-            {showNewExercize && (
-              <div className={styles.newExercizeContainer}>
-                <h4>Agrega un nuevo ejercicio</h4>
-                <form onSubmit={handleFormSubmit}>
-                  <label>
-                    Nombre:
-                    <input
-                      type='text'
-                      placeholder='Nombre del Ejercicio'
-                      onChange={handleNewName}
-                    />
-                  </label>
-                  <label>
-                    Duración:
-                    <div className={styles.durationContainer}>
-                      <input
-                        onChange={handleDurationChange}
-                        type='number'
-                        placeholder='Minutos'
-                      />
-                    </div>
-                  </label>
-                  <label>
-                    Comentarios:
-                    <textarea
-                      placeholder='Comentarios'
-                      onChange={handleComments}
-                    />
-                  </label>
-                  {selectedSection ? (
-                    <button type='submit'>Agregar a {selectedSection}</button>
-                  ) : (
-                    <select onChange={e => handleChooseSection(e.target.value)}>
-                      {sections.map((section, i) => (
-                        <option key={i} value={section}>
-                          {section}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                </form>
-              </div>
-            )}
-          </div>
+      {startedKriya && (
+        <div ref={activeKriyaRef} className={styles.rightDiv}>
+          <ActiveKriyaDisplay
+            setCurrentExIndex={setCurrentExIndex}
+            currentExIndex={currentExIndex}
+            showStopwatch={showStopwatch}
+            setShowStopwatch={setShowStopwatch}
+            currentEx={currentEx}
+            currentExIndex={currentExIndex}
+            setCurrentEx={setCurrentEx}
+            thisKriya={thisKriya}
+          />
         </div>
-        <button onClick={() => console.log(currentEx)}>Print Ex</button>
-      </div> */}
+      )}
     </div>
   );
 };

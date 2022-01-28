@@ -1,23 +1,17 @@
 import styles from './styles.module.css';
 import Stopwatch from '../Stopwatch';
 
-const StopwatchContainer = ({
-  setShowStopwatch,
-  thisKriya,
-  setThisKriya,
-  currentEx,
-}) => {
+const StopwatchContainer = ({ setShowStopwatch, currentEx }) => {
   return (
     <div className={styles.cronometro}>
       <span onClick={() => setShowStopwatch(false)} className={styles.closeBtn}>
         ❌
       </span>
-      <h6>{currentEx.name}</h6>
-      <Stopwatch
-        thisKriya={thisKriya}
-        setThisKriya={setThisKriya}
-        currentEx={currentEx}
-      />
+      {typeof currentEx.duration === 'number' ? (
+        <Stopwatch currentEx={currentEx} />
+      ) : (
+        <h2>{currentEx.duration} repeticiones</h2>
+      )}
     </div>
   );
 };

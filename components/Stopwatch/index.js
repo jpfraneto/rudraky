@@ -16,11 +16,6 @@ const Stopwatch = ({ currentEx, thisKriya, setThisKriya }) => {
       setStarted(true);
       interval = setInterval(() => {
         setElapsedTime(prevTime => {
-          if (prevTime === targetDuration) {
-            const updatedKriya = [...thisKriya];
-            console.log(thisKriya[0]['ejercicios'][0]);
-            console.log('the updated kriya is: ', updatedKriya);
-          }
           return prevTime + 1;
         });
       }, 1000);
@@ -37,12 +32,12 @@ const Stopwatch = ({ currentEx, thisKriya, setThisKriya }) => {
 
   return (
     <div className={styles.mainContainer}>
-      <h4>
+      <h2>
         <span style={{ color: targetDuration <= elapsedTime && 'white' }}>
           {secsToTime(elapsedTime)}
         </span>{' '}
         de {secsToTime(targetDuration)}
-      </h4>
+      </h2>
       {targetDuration <= elapsedTime && (
         <div className={styles.messagesContainer}>
           <p className={styles.timeAlert}>Tiempo!</p>
@@ -75,9 +70,6 @@ const Stopwatch = ({ currentEx, thisKriya, setThisKriya }) => {
               }}
             >
               Reiniciar
-            </button>
-            <button onClick={() => alert('siguiente ejercicio!')}>
-              Siguiente Ejercicio
             </button>
           </>
         )}

@@ -7,12 +7,21 @@
   text-align: center;
 }
 
-.kriyaNavbar > * {
-  margin: 0 8px;
-  padding: 4px;
-  background-color: olive;
-  font-weight: bold;
+.kriyaNavbar {
+  margin: 8px auto;
+  height: 444px;
+  overflow-y: scroll;
+  width: fit-content;
+  background-color: darkseagreen;
+  padding: 7px;
   border-radius: 8px;
+  border: solid black 1px;
+}
+
+.kriyaNavbar > * {
+  margin: 0 2px;
+  padding: 4px;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -26,10 +35,57 @@
 .ejercicio {
   display: flex;
   justify-content: center;
-  margin: 8px auto;
+  margin: 2px 0;
   width: fit-content;
 }
 
 .ejercicio span {
-  margin: 0 40px;
+  margin: 2px;
+  border-radius: 8px;
+  border: solid black 2px;
+  padding: 3px 7px;
+}
+
+.sectionSpan {
+  margin: 0 4px;
+  width: 144px;
+  background-color: chocolate;
+}
+
+.sectionSpan:hover {
+  background-color: coral;
+}
+
+.nameSpan {
+  background-color: cornflowerblue;
+}
+
+.nameSpan:hover {
+  background-color: cornsilk;
+}
+
+.durationSpan {
+  background-color: darkmagenta;
+}
+
+.durationSpan:hover {
+  background-color: darkseagreen;
+}
+
+.startKiryaBtn {
+  padding: 4px;
+  background-color: darkseagreen;
+  border: solid black 1px;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.startKiryaBtn:hover {
+  background-color: rgb(49, 139, 97);
 }

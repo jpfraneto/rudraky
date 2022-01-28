@@ -2,35 +2,47 @@ import styles from './styles.module.css';
 import KriyaElement from '../KriyaElement';
 import { useState } from 'react';
 
-const KriyaDisplay = ({ thisKriya, setCurrentEx, setShowStopwatch }) => {
+const KriyaDisplay = ({
+  thisKriya,
+  setCurrentEx,
+  currentExIndex,
+  setShowStopwatch,
+  setStartedKriya,
+  startedKriya,
+  activeKriyaRef,
+}) => {
   const [chosenSection, setChosenSection] = useState(null);
+  const handleStartKriya = () => {
+    setStartedKriya(true);
+    activeKriyaRef.current.scrollIntoView();
+    setCurrentEx(thisKriya[currentExIndex]);
+    setShowStopwatch(true);
+  };
+
+  const durationFormat = dur => {
+    console.log(typeof dur);
+    return typeof dur === 'number' ? `${dur} Segundos` : `${dur} Repeticiones`;
+  };
 
   return (
     <div className={styles.mainContainer}>
+      <h2>Para un Corazón Tranquilo</h2>
       <div className={styles.kriyaNavbar}>
-        {/* <button onClick={() => setChosenSection(section)} key={id}>
-            {section.section}
-          </button> */}
         {thisKriya.map((ex, id) => (
           <div className={styles.ejercicio}>
-            <span>{ex.section} </span>
-            <span>{ex.name}</span>
-            <span>{ex.duration}</span>
+            <span className={styles.sectionSpan}>{ex.section} </span>
+            <span className={styles.nameSpan}>{ex.name}</span>
+            <span className={styles.durationSpan}>
+              {durationFormat(ex.duration)}
+            </span>
           </div>
         ))}
       </div>
-      {chosenSection && (
-        <div className={styles.kriyaSection}>
-          <h2>{chosenSection.section}</h2>
-          {chosenSection.ejercicios.map((ej, i) => (
-            <KriyaElement
-              ej={ej}
-              key={i}
-              setShowStopwatch={setShowStopwatch}
-              setCurrentEx={setCurrentEx}
-            />
-          ))}
-        </div>
+
+      {!startedKriya && (
+        <button onClick={handleStartKriya} className={styles.startKiryaBtn}>
+          Empezar Kriya
+        </button>
       )}
     </div>
   );

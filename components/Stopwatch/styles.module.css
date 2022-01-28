@@ -1,5 +1,4 @@
 .mainContainer {
-  height: 80%;
   margin-top: 8px;
   text-align: center;
 }
@@ -30,11 +29,11 @@
 
 .timeAlert {
   color: white;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .subText {
-  font-size: 0.5rem;
+  font-size: 1rem;
 }
 
 @keyframes fadeIn {
