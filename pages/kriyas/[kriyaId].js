@@ -1,81 +1,29 @@
-import styles from '../styles/Kriya.module.css';
-import ActiveKriyaDisplay from '../components/ActiveKriyaDisplay';
-import KriyaDisplay from '../components/KriyaDisplay';
-import Stopwatch from '../components/Stopwatch';
+import styles from '../../styles/Kriya.module.css';
+import { useRouter } from 'next/router';
+import ActiveKriyaDisplay from '../../components/ActiveKriyaDisplay';
+import KriyaDisplay from '../../components/KriyaDisplay';
 import { useState, useRef } from 'react';
-import StopwatchContainer from '../components/StopwatchContainer';
-const sections = [
-  'Invocacion',
-  'Calentamiento',
-  'Kriya',
-  'Relajacion',
-  'Meditacion',
-  'Cierre',
-];
 
-const chosenKriya = [
-  {
-    section: 'Invocacion',
-    description: 'Ong namo gurudev namo',
-    name: 'Adi Mantra',
-    duration: 88,
-    complete: false,
-  },
-  {
-    section: 'Calentamiento',
-    name: 'Respiracion de Fuego',
-    description: 'Respiración desde el abdomen bombeando el punto abdominal',
-    duration: 188,
-    complete: false,
-  },
-  {
-    section: 'Calentamiento',
-    name: 'Saludos al Sol',
-    duration: '3',
-    complete: false,
-  },
-  {
-    section: 'Kriya',
-    name: 'Sat Kriya',
-    duration: 188,
-    complete: false,
-  },
-  {
-    section: 'Kriya',
-    name: 'Flexiones Espinales',
-    duration: '108',
-    complete: false,
-  },
-  {
-    section: 'Relajación',
-    name: 'Relajacion',
-    duration: 600,
-    complete: false,
-  },
-  {
-    section: 'Meditación',
-    name: 'Corazón Tranquilo',
-    duration: 444,
-    complete: false,
-  },
-  {
-    section: 'Cierre',
-    name: 'Eterno Sol',
-    duration: '3',
-    complete: false,
-  },
-];
+export async function getServerSideProps(context) {
+  let dev = process.env.NODE_ENV !== 'production';
+  let { DEV_URL, PROD_URL } = process.env;
+  let response = await fetch(
+    `${dev ? DEV_URL : PROD_URL}/api/kriyas/${context.query.kriyaId}`
+  );
+  const fetchedKriya = await response.json();
+  return {
+    props: { fetchedKriya },
+  };
+}
 
-const Kriya = () => {
+const DisplayKriya = ({ fetchedKriya }) => {
   const [showStopwatch, setShowStopwatch] = useState(false);
   const [currentExIndex, setCurrentExIndex] = useState(0);
-  const [thisKriya, setThisKriya] = useState(chosenKriya);
+  const [thisKriya, setThisKriya] = useState(fetchedKriya.content);
   const [currentEx, setCurrentEx] = useState({});
   const [showNewExercize, setShowNewExercize] = useState(false);
   const [newEx, setNewEx] = useState({});
   const [startedKriya, setStartedKriya] = useState(false);
-
-  const activeKriyaRef = useRef(null);
 
   const handleChooseSection = name => {
     setSelectedSection(name);
@@ -89,9 +37,7 @@ const Kriya = () => {
     setNewEx(ex => setNewEx({ ...ex, name: e.target.value }));
   };
 
-  const handlePrinter = e => {
-    console.log('the new ex is: ', newEx);
-  };
+  const handlePrinter = e => {};
 
   const handleComments = e => {
     setNewEx(ex => setNewEx({ ...ex, comments: e.target.value }));
@@ -106,11 +52,32 @@ const Kriya = () => {
     console.log('the new ex is: ', newEx);
   };
 
+  const handleGetKriyasFromDB = async () => {
+    const res = await fetch('/api/kriyas');
+    const data = await res.json();
+    console.log('the data is: ', data);
+  };
+
+  const handleAddKriyaToDB = async () => {
+    const kriyaInfo = chosenKriya;
+    console.log('the kriya info is: ', kriyaInfo);
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(kriyaInfo),
+    };
+    const res = await fetch('/api/kriyas', requestOptions);
+    const data = await res.json();
+    console.log(
+      'the answer from the server after posting the kriya is: ',
+      data
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.leftDiv}>
         <KriyaDisplay
-          activeKriyaRef={activeKriyaRef}
           setShowStopwatch={setShowStopwatch}
           thisKriya={thisKriya}
           setCurrentEx={setCurrentEx}
@@ -121,7 +88,7 @@ const Kriya = () => {
         />
       </div>
       {startedKriya && (
-        <div ref={activeKriyaRef} className={styles.rightDiv}>
+        <div className={styles.rightDiv}>
           <ActiveKriyaDisplay
             setCurrentExIndex={setCurrentExIndex}
             currentExIndex={currentExIndex}
@@ -138,4 +105,4 @@ const Kriya = () => {
   );
 };
 
-export default Kriya;
+export default DisplayKriya;

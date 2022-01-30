@@ -4,9 +4,6 @@ import Stopwatch from '../Stopwatch';
 const StopwatchContainer = ({ setShowStopwatch, currentEx }) => {
   return (
     <div className={styles.cronometro}>
-      <span onClick={() => setShowStopwatch(false)} className={styles.closeBtn}>
-        ❌
-      </span>
       {typeof currentEx.duration === 'number' ? (
         <Stopwatch currentEx={currentEx} />
       ) : (

@@ -5,8 +5,7 @@
 
 .topContainer {
   position: relative;
-  background-color: darkslategray;
-  height: 60%;
+  height: 100%;
 }
 
 .bottomContainer {
@@ -29,5 +28,30 @@
 }
 
 .nextEx:hover {
-  background-color: rgb(49, 139, 97);
+  background-color: rgb(86, 88, 87);
+  box-shadow: black 2px 2px;
+}
+
+.sectionSpan {
+  font-size: 2rem;
+  margin: 0 22px;
+}
+
+.exTitle {
+  border: solid black 2px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: rgb(205, 205, 223);
+}
+
+.exName {
+  background-color: lavender;
+  padding: 4px;
+  border: solid black 0.5px;
+  border-radius: 8px;
 }

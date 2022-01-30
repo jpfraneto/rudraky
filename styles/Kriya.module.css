@@ -2,17 +2,21 @@
   background-color: rgb(207, 136, 103);
   height: calc(100vh - 44px);
   position: relative;
+  display: flex;
 }
 
 .leftDiv {
   height: 100%;
+  margin: 0 auto;
   background-color: cornsilk;
 }
 
 .rightDiv {
-  height: 100vh;
-  background-color: yellowgreen;
+  height: 100%;
+  border: solid black 2px;
+  background-color: rgb(211, 195, 129);
   padding: 33px;
+  width: 60%;
   text-align: center;
 }
 

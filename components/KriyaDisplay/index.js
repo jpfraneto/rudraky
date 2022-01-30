@@ -14,19 +14,20 @@ const KriyaDisplay = ({
   const [chosenSection, setChosenSection] = useState(null);
   const handleStartKriya = () => {
     setStartedKriya(true);
-    activeKriyaRef.current.scrollIntoView();
     setCurrentEx(thisKriya[currentExIndex]);
     setShowStopwatch(true);
   };
 
   const durationFormat = dur => {
-    console.log(typeof dur);
     return typeof dur === 'number' ? `${dur} Segundos` : `${dur} Repeticiones`;
   };
 
   return (
     <div className={styles.mainContainer}>
-      <h2>Para un Corazón Tranquilo</h2>
+      <h2>
+        Kriya Para un Corazón Tranquilo{' '}
+        <span className={styles.kriyaSignature}>Creado por Amrit Akasha</span>
+      </h2>
       <div className={styles.kriyaNavbar}>
         {thisKriya.map((ex, id) => (
           <div className={styles.ejercicio}>
