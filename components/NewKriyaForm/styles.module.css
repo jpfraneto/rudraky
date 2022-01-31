@@ -1,0 +1,8 @@
+.container {
+  width: 400px;
+  background-color: burlywood;
+  border: solid black 1px;
+  height: 70vh;
+  padding: 8px;
+  text-align: center;
+}

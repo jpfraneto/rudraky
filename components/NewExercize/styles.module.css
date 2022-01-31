@@ -1,0 +1,8 @@
+.exContainer {
+  background-color: cadetblue;
+  border-radius: 8px;
+  border: solid black 1px;
+  width: 80%;
+  margin: 12px auto;
+  padding: 12px;
+}

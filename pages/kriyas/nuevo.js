@@ -1,18 +1,14 @@
-const NuevoKriya = () => {
-  const handleFormSubmit = async e => {
-    e.preventDefault();
+import NewKriyaForm from '../../components/NewKriyaForm';
+import KriyaPreview from '../../components/KriyaPreview';
+import styles from '../../styles/NewKriya.module.css';
+import { useState } from 'react';
 
-    // const res = await fetch('/api/kriya', { post });
-  };
+const NuevoKriya = () => {
+  const [kriya, setKriya] = useState({ exercizes: [] });
   return (
-    <div>
-      <p>
-        This is the page for creating a new kriya, which will be saved in the db
-        and accesed in the page kriyas to run a new one!
-      </p>
-      <form action='' onSubmit={handleFormSubmit}>
-        {/* all the exercizes go here, with the person that is creating the kriya. */}
-      </form>
+    <div className={styles.kriyaFormContainer}>
+      <NewKriyaForm setKriya={setKriya} kriya={kriya} />
+      <KriyaPreview thisKriya={kriya} />
     </div>
   );
 };

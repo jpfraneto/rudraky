@@ -24,7 +24,7 @@ const addKriya = async (req, res) => {
   try {
     let { db } = await connectToDatabase();
     const newKriya = {
-      author: 'jpfraneto',
+      author: 'Jorge Pablo Franetovic',
       name: 'Equilibrando Prana y Apana',
       content: req.body,
       date: new Date().getTime(),

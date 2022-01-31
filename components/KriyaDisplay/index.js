@@ -9,7 +9,6 @@ const KriyaDisplay = ({
   setShowStopwatch,
   setStartedKriya,
   startedKriya,
-  activeKriyaRef,
 }) => {
   const [chosenSection, setChosenSection] = useState(null);
   const handleStartKriya = () => {

@@ -1,0 +1,65 @@
+.mainContainer {
+  width: 555px;
+  height: 70vh;
+  background-color: khaki;
+  padding: 8px;
+  margin: 0 20px;
+  border: solid black 1px;
+  text-align: center;
+}
+
+.kriyaNavbar {
+  margin: 8px auto;
+  overflow-y: scroll;
+  width: 88%;
+  height: 80%;
+  background-color: darkseagreen;
+  padding: 7px;
+  border-radius: 8px;
+  border: solid black 1px;
+}
+
+.kriyaNavbar > * {
+  margin: 0 2px;
+  padding: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.kriyaSection {
+  background-color: rgb(206, 206, 36);
+  border: solid black 2px;
+  margin-top: 30px;
+  height: 80%;
+}
+
+.kriyaSignature {
+  font-size: 0.5rem;
+}
+
+.ejercicio {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  width: fit-content;
+  border: solid white 2px;
+  background-color: black;
+  border-radius: 8px;
+}
+
+.ejercicio span {
+  margin: 2px;
+  border-radius: 8px;
+  border: solid black 2px;
+  padding: 3px 7px;
+  background-color: rgb(179, 218, 228);
+}
+
+.ejercicio:hover span {
+  background-color: rgb(135, 160, 167);
+}
+
+.sectionSpan {
+  margin: 0 4px;
+  width: 144px;
+}
