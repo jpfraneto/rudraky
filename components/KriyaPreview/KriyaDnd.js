@@ -1,8 +1,19 @@
 import { Droppable, DragDropContext } from 'react-beautiful-dnd';
 import KriyaElementDraggable from '../KriyaElementDraggable';
+import { useState } from 'react';
+import fakeData from '../../lib/fakeData';
 import styles from './styles.module.css';
 
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
 const KriyaDnd = ({ thisKriya }) => {
+  const [kriya, setKriya] = useState(fakeData);
   const handleKriyaSubmit = () => {
     // Before: Check if it has all of the sections
     if (checkIfAllExercizes(thisKriya.exercizes)) {
@@ -34,7 +45,15 @@ const KriyaDnd = ({ thisKriya }) => {
     return false;
   };
   const handleDragEnd = result => {
-    alert('reorder the list!');
+    if (!result.destination) {
+      return;
+    }
+    const newKriya = reorder(
+      kriya,
+      result.source.index,
+      result.destination.index
+    );
+    setKriya(newKriya);
   };
   return (
     <div className={styles.mainContainer}>
@@ -47,33 +66,14 @@ const KriyaDnd = ({ thisKriya }) => {
           </span>
         </h2>
       )}
-
-      {/* <DragDropContext onDragEnd={handleDragEnd}>
+      <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId='droppable'>
-          {provided => {
-            <div
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              className={styles.kriyaNavbar}
-            >
-              {thisKriya.exercizes.map((ex, i) => (
-                <KriyaElementDraggable key={ex.id} index={i} ex={ex} />
-              ))}
-              {provided.placeholder}
-            </div>;
-          }}
+          {(provided, snapshot) => (
+            //Acá me quedé
+            <p>Acá me quedé</p>
+          )}
         </Droppable>
-      </DragDropContext> */}
-      <div>
-        <Droppable droppableId='droppable-1'>
-          {provided => {
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              <h3>I am a droppable!</h3>
-              {provided.placeholder}
-            </div>;
-          }}
-        </Droppable>
-      </div>
+      </DragDropContext>
 
       <button onClick={handleKriyaSubmit}>Agregar Kriya</button>
     </div>
