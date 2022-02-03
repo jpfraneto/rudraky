@@ -40,7 +40,7 @@
 .ejercicio {
   display: flex;
   justify-content: center;
-  margin: 5px 0;
+  margin: 5px 0 0 20px;
   width: fit-content;
   border: solid white 2px;
   background-color: black;
@@ -62,4 +62,50 @@
 .sectionSpan {
   margin: 0 4px;
   width: 144px;
+}
+
+.missingList {
+  list-style-type: none;
+}
+
+.titleContainer {
+  height: 7%;
+}
+
+.previewExercizesContainer {
+  overflow-y: scroll;
+  height: 83%;
+}
+
+.newKriyaBtnContainer {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newKriyaBtn {
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  color: white;
+  font-size: 1.6rem;
+  height: 80%;
+  width: 200px;
+  cursor: pointer;
+  border: solid black 2px;
+  animation: fadeIn 2s linear;
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

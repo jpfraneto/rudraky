@@ -6,3 +6,7 @@
   padding: 8px;
   text-align: center;
 }
+
+.missingList {
+  list-style-type: none;
+}

@@ -1,7 +1,7 @@
 import NewExercize from '../NewExercize/NewExercize';
 import styles from './styles.module.css';
 
-const NewKriyaForm = ({ setKriya }) => {
+const NewKriyaForm = ({ kriya, setKriya, setMissing, missing }) => {
   const handleChange = e => {
     setKriya(prevKriya => {
       return { ...prevKriya, [e.target.name]: e.target.value };
@@ -15,6 +15,7 @@ const NewKriyaForm = ({ setKriya }) => {
         type='text'
         placeholder='Nombre del Kriya'
         name='name'
+        value={kriya.name}
         onChange={handleChange}
       />{' '}
       <br />
@@ -23,9 +24,20 @@ const NewKriyaForm = ({ setKriya }) => {
         type='text'
         placeholder='Autor'
         name='author'
+        value={kriya.author}
         onChange={handleChange}
       />
-      <NewExercize setKriya={setKriya} />
+      <NewExercize setKriya={setKriya} setMissing={setMissing} />
+      {missing.length > 0 && (
+        <div>
+          <h3>Faltan las siguientes secciones en la clase:</h3>
+          <ul className={styles.missingList}>
+            {missing.map(section => (
+              <li>{section}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

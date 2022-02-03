@@ -1,14 +1,29 @@
 import styles from './styles.module.css';
 import { useState } from 'react';
 
-const NewExercize = ({ setKriya }) => {
-  const [ex, setEx] = useState({});
+const generateRandomId = () => {
+  return Math.random().toFixed(4);
+};
+
+const NewExercize = ({ setKriya, setMissing }) => {
+  const [ex, setEx] = useState({
+    id: generateRandomId(),
+    durationType: 'Segundos',
+  });
   const handleChange = e => {
     setEx(prevEx => {
       return { ...prevEx, [e.target.name]: e.target.value };
     });
   };
   const handleAddExercize = () => {
+    setMissing(prevMissing => {
+      if (!prevMissing.includes(ex.section)) {
+        return prevMissing;
+      }
+      const index = prevMissing.indexOf(ex.section);
+      prevMissing.splice(index, 1);
+      return prevMissing;
+    });
     setKriya(prevKriya => {
       if (prevKriya.exercizes) {
         return { ...prevKriya, exercizes: [...prevKriya.exercizes, ex] };

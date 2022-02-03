@@ -1,67 +1,103 @@
+import { Droppable, DragDropContext, Draggable } from 'react-beautiful-dnd';
+import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
-import KriyaElement from '../KriyaElement';
-import { useState } from 'react';
 
-const KriyaPreview = ({ thisKriya }) => {
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
+const KriyaPreview = ({ kriya, setKriya, missing, setMissing }) => {
+  const [winReady, setWinReady] = useState(false);
+
+  useEffect(() => {
+    setWinReady(true);
+  }, []);
   const handleKriyaSubmit = () => {
     // Before: Check if it has all of the sections
-    if (checkIfAllExercizes(thisKriya.exercizes)) {
+    if (checkIfAllExercizes(kriya.exercizes)) {
       return console.log('submit the kriya to DB');
     }
   };
-  const checkIfAllExercizes = exs => {
-    if (exs) {
-      const sections = [
-        'Invocacion',
-        'Calentamiento',
-        'Kriya',
-        'Relajación',
-        'Meditación',
-        'Cierre',
-      ];
-      let availableSections = [];
-      exs.forEach(ex => {
-        if (!availableSections.includes(ex.section)) {
-          availableSections.push(ex.section);
-        }
-      });
-      if (availableSections.length === 6) {
-        return true;
-      }
+
+  const handleDragEnd = result => {
+    if (!result.destination) {
+      return;
     }
-    const missing = sections.filter(x => !x.includes(availableSections));
-    console.log('You are missing the following sections!', missing);
-    return false;
+    const newExercizes = reorder(
+      kriya.exercizes,
+      result.source.index,
+      result.destination.index
+    );
+    setKriya({ ...kriya, exercizes: newExercizes });
   };
   return (
-    <div className={styles.mainContainer}>
-      {thisKriya.name && thisKriya.author && (
-        <h2>
-          {thisKriya.name}
-          <span className={styles.kriyaSignature}>
-            {' '}
-            Creado por {thisKriya.author}
-          </span>
-        </h2>
-      )}
+    <>
+      {winReady ? (
+        <div className={styles.mainContainer}>
+          <div className={styles.titleContainer}>
+            {kriya.name && kriya.author && (
+              <h2>
+                {kriya.name}
+                <span className={styles.kriyaSignature}>
+                  {' '}
+                  Creado por {kriya.author}
+                </span>
+              </h2>
+            )}
+          </div>
 
-      <div className={styles.kriyaNavbar}>
-        {thisKriya.exercizes ? (
-          thisKriya.exercizes.map((ex, id) => (
-            <div className={styles.ejercicio}>
-              <span className={styles.sectionSpan}>{ex.section} </span>
-              <span className={styles.nameSpan}>{ex.exName} </span>
-              <span className={styles.durationSpan}>
-                {`${ex.exDuration} ${ex.durationType}`}
-              </span>
-            </div>
-          ))
-        ) : (
-          <p>Agrega ejercicios al kriya!</p>
-        )}
-      </div>
-      <button onClick={handleKriyaSubmit}>Agregar Kriya</button>
-    </div>
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Droppable droppableId='droppable'>
+              {(provided, snapshot) => (
+                <div
+                  className={styles.previewExercizesContainer}
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {kriya.exercizes.map((ex, index) => {
+                    return (
+                      <Draggable key={ex.id} draggableId={ex.id} index={index}>
+                        {(provided, snapshot) => (
+                          <div
+                            className={styles.ejercicio}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <span className={styles.sectionSpan}>
+                              {ex.section}{' '}
+                            </span>
+                            <span className={styles.nameSpan}>{ex.exName}</span>
+                            <span className={styles.durationSpan}>
+                              {ex.exDuration}
+                            </span>
+                          </div>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+          <div className={styles.newKriyaBtnContainer}>
+            {missing.length === 0 && (
+              <button
+                className={styles.newKriyaBtn}
+                onClick={handleKriyaSubmit}
+              >
+                Agregar Kriya
+              </button>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 };
 
