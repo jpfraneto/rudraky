@@ -19,7 +19,7 @@ export async function getServerSideProps(context) {
 const DisplayKriya = ({ fetchedKriya }) => {
   const [showStopwatch, setShowStopwatch] = useState(false);
   const [currentExIndex, setCurrentExIndex] = useState(0);
-  const [thisKriya, setThisKriya] = useState(fetchedKriya.content);
+  const [thisKriya, setThisKriya] = useState(fetchedKriya);
   const [currentEx, setCurrentEx] = useState({});
   const [showNewExercize, setShowNewExercize] = useState(false);
   const [newEx, setNewEx] = useState({});
@@ -68,10 +68,6 @@ const DisplayKriya = ({ fetchedKriya }) => {
     };
     const res = await fetch('/api/kriyas', requestOptions);
     const data = await res.json();
-    console.log(
-      'the answer from the server after posting the kriya is: ',
-      data
-    );
   };
 
   return (

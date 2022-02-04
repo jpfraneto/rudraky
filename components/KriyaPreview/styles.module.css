@@ -101,6 +101,11 @@
   opacity: 1;
 }
 
+.ejercicioContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -108,4 +113,26 @@
   100% {
     opacity: 1;
   }
+}
+
+.ejercicioOptions {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0 0 20px;
+  width: fit-content;
+  border: solid white 2px;
+  background-color: black;
+  border-radius: 8px;
+}
+
+.ejercicioOptions span {
+  margin: 2px;
+  border-radius: 8px;
+  border: solid black 2px;
+  padding: 3px 7px;
+  background-color: rgb(179, 218, 228);
+}
+
+.ejercicioOptions span:hover {
+  color: red;
 }

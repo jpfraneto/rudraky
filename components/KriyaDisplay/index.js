@@ -24,16 +24,19 @@ const KriyaDisplay = ({
   return (
     <div className={styles.mainContainer}>
       <h2>
-        Kriya Para un Corazón Tranquilo{' '}
-        <span className={styles.kriyaSignature}>Creado por Amrit Akasha</span>
+        {thisKriya.name}
+        <span className={styles.kriyaSignature}>
+          {' '}
+          Creado por {thisKriya.author}
+        </span>
       </h2>
       <div className={styles.kriyaNavbar}>
-        {thisKriya.map((ex, id) => (
+        {thisKriya.exercizes.map((ex, id) => (
           <div className={styles.ejercicio}>
             <span className={styles.sectionSpan}>{ex.section} </span>
-            <span className={styles.nameSpan}>{ex.name}</span>
+            <span className={styles.nameSpan}>{ex.exName}</span>
             <span className={styles.durationSpan}>
-              {durationFormat(ex.duration)}
+              {durationFormat(ex.exDuration)}
             </span>
           </div>
         ))}

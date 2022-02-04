@@ -24,15 +24,14 @@ const addKriya = async (req, res) => {
   try {
     let { db } = await connectToDatabase();
     const newKriya = {
-      author: 'Jorge Pablo Franetovic',
-      name: 'Equilibrando Prana y Apana',
-      content: req.body,
+      ...req.body,
       date: new Date().getTime(),
     };
-    await db.collection('kriyas').insertOne(newKriya);
+    const serverResponse = await db.collection('kriyas').insertOne(newKriya);
     return res.json({
       message: 'The kriya was added successfully',
       success: true,
+      kriyaId: serverResponse.insertedId,
     });
   } catch (error) {
     return res.json({

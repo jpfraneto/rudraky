@@ -57,7 +57,7 @@ const Navbar = () => {
                     <Image src='/icons/expand.svg' width='24px' height='24px' />
                   </span>
                 ) : (
-                  <p>Iniciar Sesión</p>
+                  <span>Iniciar Sesión</span>
                 )}
               </p>
               {showDropdown && (

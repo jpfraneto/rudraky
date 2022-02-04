@@ -32,9 +32,9 @@ const NewKriyaForm = ({ kriya, setKriya, setMissing, missing }) => {
         <div>
           <h3>Faltan las siguientes secciones en la clase:</h3>
           <ul className={styles.missingList}>
-            {missing.map(section => (
-              <li>{section}</li>
-            ))}
+            {missing.map((section, index) => {
+              return <li key={`${section}index`}>{section}</li>;
+            })}
           </ul>
         </div>
       )}

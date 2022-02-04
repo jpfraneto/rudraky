@@ -20,13 +20,12 @@ const ActiveKriyaDisplay = ({
       alert('Se terminó la práctica!');
     }
   };
-
   return (
     <div className={styles.activeKriyaContainer}>
       <div className={styles.topContainer}>
         <h2 className={styles.exTitle}>
           <span className={styles.sectionSpan}>{currentEx.section}</span>
-          <span className={styles.exName}>{currentEx.name}</span>
+          <span className={styles.exName}>{currentEx.exName}</span>
         </h2>
         <p>{currentEx.description}</p>
         {showStopwatch && (

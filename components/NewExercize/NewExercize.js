@@ -1,13 +1,15 @@
 import styles from './styles.module.css';
 import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
-const generateRandomId = () => {
-  return Math.random().toFixed(4);
+const createId = () => {
+  const unique_id = uuid();
+  const small_id = unique_id.slice(0, 8);
+  return small_id;
 };
 
 const NewExercize = ({ setKriya, setMissing }) => {
   const [ex, setEx] = useState({
-    id: generateRandomId(),
     durationType: 'Segundos',
   });
   const handleChange = e => {
@@ -16,6 +18,7 @@ const NewExercize = ({ setKriya, setMissing }) => {
     });
   };
   const handleAddExercize = () => {
+    setEx(prevEx => ({ ...prevEx, id: createId() }));
     setMissing(prevMissing => {
       if (!prevMissing.includes(ex.section)) {
         return prevMissing;
@@ -25,6 +28,7 @@ const NewExercize = ({ setKriya, setMissing }) => {
       return prevMissing;
     });
     setKriya(prevKriya => {
+      ex.id = createId();
       if (prevKriya.exercizes) {
         return { ...prevKriya, exercizes: [...prevKriya.exercizes, ex] };
       } else {
@@ -35,6 +39,7 @@ const NewExercize = ({ setKriya, setMissing }) => {
 
   return (
     <div className={styles.exContainer}>
+      <button onClick={() => console.log(ex)}>The ex is: </button>
       <p>Agrega un Nuevo Ejercicio</p>
       <select name='section' onChange={handleChange}>
         <option>Elegir Sección de la Clase</option>
