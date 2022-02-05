@@ -23,6 +23,10 @@ const getKriyas = async (req, res) => {
 const addKriya = async (req, res) => {
   try {
     let { db } = await connectToDatabase();
+    console.log(
+      'In the route for adding a new kriya, the req.body is: ',
+      req.body
+    );
     const newKriya = {
       ...req.body,
       date: new Date().getTime(),

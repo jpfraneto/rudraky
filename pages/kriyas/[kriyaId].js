@@ -21,52 +21,10 @@ const DisplayKriya = ({ fetchedKriya }) => {
   const [currentExIndex, setCurrentExIndex] = useState(0);
   const [thisKriya, setThisKriya] = useState(fetchedKriya);
   const [currentEx, setCurrentEx] = useState({});
-  const [showNewExercize, setShowNewExercize] = useState(false);
-  const [newEx, setNewEx] = useState({});
   const [startedKriya, setStartedKriya] = useState(false);
-
-  const handleChooseSection = name => {
-    setSelectedSection(name);
-  };
-
-  const handleNewExercize = () => {
-    setShowNewExercize(!showNewExercize);
-  };
-
-  const handleNewName = e => {
-    setNewEx(ex => setNewEx({ ...ex, name: e.target.value }));
-  };
-
-  const handlePrinter = e => {};
-
-  const handleComments = e => {
-    setNewEx(ex => setNewEx({ ...ex, comments: e.target.value }));
-  };
-
-  const handleDurationChange = e => {
-    setNewEx(ex => setNewEx({ ...ex, duration: e.target.value }));
-  };
-
-  const handleFormSubmit = e => {
-    e.preventDefault();
-    console.log('the new ex is: ', newEx);
-  };
 
   const handleGetKriyasFromDB = async () => {
     const res = await fetch('/api/kriyas');
-    const data = await res.json();
-    console.log('the data is: ', data);
-  };
-
-  const handleAddKriyaToDB = async () => {
-    const kriyaInfo = chosenKriya;
-    console.log('the kriya info is: ', kriyaInfo);
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(kriyaInfo),
-    };
-    const res = await fetch('/api/kriyas', requestOptions);
     const data = await res.json();
   };
 

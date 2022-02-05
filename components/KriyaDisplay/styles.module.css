@@ -22,7 +22,6 @@
   margin: 0 2px;
   padding: 4px;
   font-weight: bold;
-  cursor: pointer;
 }
 
 .kriyaSection {
@@ -50,16 +49,13 @@
   background-color: rgb(179, 218, 228);
 }
 
-.ejercicio:hover span {
-  background-color: rgb(135, 160, 167);
-}
-
 .sectionSpan {
   margin: 0 4px;
   width: 144px;
 }
 
 .startKiryaBtn {
+  margin: 0 8px;
   padding: 4px;
   background-color: darkseagreen;
   border: solid black 1px;

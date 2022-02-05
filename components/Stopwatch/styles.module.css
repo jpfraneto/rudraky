@@ -1,6 +1,8 @@
 .mainContainer {
   margin-top: 8px;
   text-align: center;
+  position: relative;
+  height: 100%;
 }
 
 .mainContainer h4 {
@@ -8,12 +10,13 @@
 }
 
 .controlsContainer {
+  z-index: 100;
   margin: 0;
   padding: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
 }
 

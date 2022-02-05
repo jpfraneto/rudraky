@@ -1,13 +1,16 @@
 import styles from './styles.module.css';
 import Stopwatch from '../Stopwatch';
 
-const StopwatchContainer = ({ setShowStopwatch, currentEx }) => {
+const StopwatchContainer = ({ currentEx }) => {
+  console.log('the currentEx is: ', currentEx);
   return (
     <div className={styles.cronometro}>
-      {typeof currentEx.duration === 'number' ? (
+      {currentEx.durationType === 'Segundos' ? (
         <Stopwatch currentEx={currentEx} />
       ) : (
-        <h2>{currentEx.duration} repeticiones</h2>
+        <h2>
+          {currentEx.exDuration} {currentEx.durationType}
+        </h2>
       )}
     </div>
   );

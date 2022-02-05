@@ -8,7 +8,7 @@ const Stopwatch = ({ currentEx, thisKriya, setThisKriya }) => {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [started, setStarted] = useState(false);
 
-  const targetDuration = currentEx.duration;
+  const targetDuration = currentEx.exDuration;
 
   useEffect(() => {
     const interval = null;
@@ -46,8 +46,6 @@ const Stopwatch = ({ currentEx, thisKriya, setThisKriya }) => {
           </p>
         </div>
       )}
-      {/* <p>Siguiente ejercicio: </p> */}
-      {/* <KriyaElement /> */}
       <div className={styles.controlsContainer}>
         {!started && <button onClick={() => setStart(true)}>Empezar</button>}
         {start && <button onClick={() => setStart(false)}>Parar</button>}

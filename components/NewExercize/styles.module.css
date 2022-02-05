@@ -6,3 +6,9 @@
   margin: 12px auto;
   padding: 12px;
 }
+
+.textareaElement {
+  width: 100%;
+  height: 88px;
+  margin: 8px 0;
+}

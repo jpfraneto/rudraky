@@ -67,7 +67,13 @@ const NewExercize = ({ setKriya, setMissing }) => {
         <option value='Segundos'>Segundos</option>
         <option value='Repeticiones'>Repeticiones</option>
       </select>
-      <button onClick={handleAddExercize}>Agregar Ejercicio</button>
+      <textarea
+        className={styles.textareaElement}
+        placeholder='Describe el ejercicio'
+        name='descripcion'
+        onChange={handleChange}
+      />
+      <button onClick={handleAddExercize}>Agregar</button>
     </div>
   );
 };

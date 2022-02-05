@@ -1,4 +1,6 @@
 .container {
   background-color: pink;
   height: calc(100vh - 44px);
+  display: flex;
+  padding: 12px 8px;
 }

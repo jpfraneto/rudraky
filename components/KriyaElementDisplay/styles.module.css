@@ -1,0 +1,16 @@
+.kriyaElementDisplayContainer {
+  border: solid black 1px;
+  height: fit-content;
+  padding: 8px;
+  margin: 4px 12px;
+}
+
+.kriyaElementDisplayContainer:hover {
+  cursor: pointer;
+}
+
+.commentsElement {
+  text-align: center;
+  margin: auto;
+  display: block;
+}

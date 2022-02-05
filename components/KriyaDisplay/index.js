@@ -1,5 +1,6 @@
 import styles from './styles.module.css';
 import KriyaElement from '../KriyaElement';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const KriyaDisplay = ({
@@ -13,7 +14,7 @@ const KriyaDisplay = ({
   const [chosenSection, setChosenSection] = useState(null);
   const handleStartKriya = () => {
     setStartedKriya(true);
-    setCurrentEx(thisKriya[currentExIndex]);
+    setCurrentEx(thisKriya.exercizes[currentExIndex]);
     setShowStopwatch(true);
   };
 
@@ -32,7 +33,7 @@ const KriyaDisplay = ({
       </h2>
       <div className={styles.kriyaNavbar}>
         {thisKriya.exercizes.map((ex, id) => (
-          <div className={styles.ejercicio}>
+          <div className={styles.ejercicio} key={ex.id}>
             <span className={styles.sectionSpan}>{ex.section} </span>
             <span className={styles.nameSpan}>{ex.exName}</span>
             <span className={styles.durationSpan}>
@@ -43,9 +44,14 @@ const KriyaDisplay = ({
       </div>
 
       {!startedKriya && (
-        <button onClick={handleStartKriya} className={styles.startKiryaBtn}>
-          Empezar Kriya
-        </button>
+        <>
+          <button onClick={handleStartKriya} className={styles.startKiryaBtn}>
+            Empezar Kriya
+          </button>
+          <Link href='/kriyas'>
+            <a className={styles.startKiryaBtn}>Volver</a>
+          </Link>
+        </>
       )}
     </div>
   );

@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  height: calc(100vh - 44px);
+  background-color: lightpink;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container > * {
+  margin: 55px 0;
+}

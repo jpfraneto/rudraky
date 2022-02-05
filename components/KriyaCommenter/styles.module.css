@@ -1,0 +1,11 @@
+.blueBack {
+  height: 80%;
+}
+
+.commentArea {
+  width: 80%;
+  height: 333px;
+  background-color: transparent;
+  border: solid black 2px;
+  padding: 4px;
+}

@@ -4,7 +4,10 @@ import KriyaElementDisplay from '../../components/KriyaElementDisplay';
 const Kriyas = ({ kriyas }) => {
   return (
     <div className={styles.container}>
-      {kriyas && kriyas.map(kriya => <KriyaElementDisplay kriya={kriya} />)}
+      {kriyas &&
+        kriyas.map(kriya => {
+          return <KriyaElementDisplay key={kriya._id} kriya={kriya} />;
+        })}
     </div>
   );
 };
