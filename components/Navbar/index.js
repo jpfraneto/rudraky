@@ -29,11 +29,6 @@ const Navbar = () => {
       <div className={styles.rightNav}>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
-            <Link href='/login'>
-              <a>Entrar</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>
             <Link href='/historia'>
               <a>Historia</a>
             </Link>

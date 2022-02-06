@@ -8,6 +8,10 @@ export default async function handler(req, res) {
       return getKriyas(req, res);
     }
 
+    case 'PUT': {
+      return updateKriya(req, res);
+    }
+
     case 'POST': {
       return addKriya(req, res);
     }
@@ -20,15 +24,27 @@ const getKriyas = async (req, res) => {
   return res.json(kriyas);
 };
 
+const updateKriya = async (req, res) => {
+  let { db } = await connectToDatabase();
+  req.body.commentElement.date = new Date().getTime();
+  await db.collection('kriyas').updateOne(
+    {
+      _id: new ObjectId(req.body.kriyaId),
+    },
+    { $push: { comments: req.body.commentElement } }
+  );
+  return res.json({
+    message: `Kriya updated successfully with the comment from ${req.body.commentElement.commentAuthor}`,
+    success: true,
+  });
+};
+
 const addKriya = async (req, res) => {
   try {
     let { db } = await connectToDatabase();
-    console.log(
-      'In the route for adding a new kriya, the req.body is: ',
-      req.body
-    );
     const newKriya = {
       ...req.body,
+      active: 1,
       date: new Date().getTime(),
     };
     const serverResponse = await db.collection('kriyas').insertOne(newKriya);

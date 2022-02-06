@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import NewKriya from '../components/NewKriya';
 
 export default function Home() {
   return (
@@ -16,12 +15,6 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.leftMain}>
-          <h1 className={styles.title}>Últimos Kriyas</h1>
-          <NewKriya name='Seba' />
-          <NewKriya name='Ana Lucia' />
-          <NewKriya name='Ana Cristina' />
-        </div>
         <div className={styles.rightMain}></div>
       </main>
     </div>

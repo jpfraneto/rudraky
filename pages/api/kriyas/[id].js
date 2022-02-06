@@ -27,21 +27,6 @@ const getKriya = async (req, res) => {
   return res.json(kriya);
 };
 
-const updateKriya = async (req, res) => {
-  let { db } = await connectToDatabase();
-  console.log('inside the update kriya route');
-  await db.collection('kriyas').updateOne(
-    {
-      _id: new ObjectId(req.body.kriyaId),
-    },
-    { $push: { comments: req.body.commentElement } }
-  );
-  return res.json({
-    message: 'Kriya updated successfully',
-    success: true,
-  });
-};
-
 // const addUser = async (req, res) => {
 //   try {
 //     let { db } = await connectToDatabase();

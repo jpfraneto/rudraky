@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 import KriyaElement from '../KriyaElement';
 import Link from 'next/link';
+import Button from '../Button';
 import { useState } from 'react';
 
 const KriyaDisplay = ({
@@ -10,16 +11,17 @@ const KriyaDisplay = ({
   setShowStopwatch,
   setStartedKriya,
   startedKriya,
+  setThisKriya,
 }) => {
-  const [chosenSection, setChosenSection] = useState(null);
   const handleStartKriya = () => {
     setStartedKriya(true);
+    setThisKriya(prevKriya => {
+      const prevExs = prevKriya.exercizes;
+      prevExs[0].active = 0;
+      return { ...prevKriya, exercizes: prevExs };
+    });
     setCurrentEx(thisKriya.exercizes[currentExIndex]);
     setShowStopwatch(true);
-  };
-
-  const durationFormat = dur => {
-    return typeof dur === 'number' ? `${dur} Segundos` : `${dur} Repeticiones`;
   };
 
   return (
@@ -33,11 +35,18 @@ const KriyaDisplay = ({
       </h2>
       <div className={styles.kriyaNavbar}>
         {thisKriya.exercizes.map((ex, id) => (
-          <div className={styles.ejercicio} key={ex.id}>
+          <div
+            className={styles.ejercicio}
+            key={ex.id}
+            style={{
+              backgroundColor:
+                ex.active < 0 ? 'lightblue' : ex.active === 0 && 'green',
+            }}
+          >
             <span className={styles.sectionSpan}>{ex.section} </span>
             <span className={styles.nameSpan}>{ex.exName}</span>
             <span className={styles.durationSpan}>
-              {durationFormat(ex.exDuration)}
+              {ex.exDuration} {ex.durationType}
             </span>
           </div>
         ))}
@@ -45,9 +54,7 @@ const KriyaDisplay = ({
 
       {!startedKriya && (
         <>
-          <button onClick={handleStartKriya} className={styles.startKiryaBtn}>
-            Empezar Kriya
-          </button>
+          <Button text='Empezar Kriya' actionOnClick={handleStartKriya} />
           <Link href='/kriyas'>
             <a className={styles.startKiryaBtn}>Volver</a>
           </Link>

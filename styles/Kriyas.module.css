@@ -3,4 +3,27 @@
   height: calc(100vh - 44px);
   display: flex;
   padding: 12px 8px;
+  position: relative;
+}
+
+.newKriyaBtn {
+  padding: 8px;
+  background-color: aqua;
+  font-size: 2rem;
+  width: fit-content;
+  height: fit-content;
+  border: solid black 2px;
+}
+
+.kriyasDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.newKriyaBtn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }

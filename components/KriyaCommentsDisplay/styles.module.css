@@ -1,0 +1,12 @@
+.container {
+  background-color: blueviolet;
+  height: 100%;
+  padding: 8px;
+  overflow-y: scroll;
+}
+
+.commentContainer {
+  margin: 8px auto;
+  border: solid black 1px;
+  padding: 4px;
+}

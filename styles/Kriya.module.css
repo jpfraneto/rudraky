@@ -1,18 +1,16 @@
 .container {
   background-color: pink;
-  height: calc(100vh - 44px);
+  min-height: calc(100vh - 44px);
   position: relative;
   display: flex;
 }
 
 .leftDiv {
-  height: 100%;
   margin: 0 auto;
   background-color: cornsilk;
 }
 
 .rightDiv {
-  height: 100%;
   border: solid black 2px;
   background-color: rgb(211, 195, 129);
   padding: 33px;
@@ -68,4 +66,12 @@
   background-color: salmon;
   margin: 20px auto;
   border: solid black 2px;
+}
+
+.commentsContainer {
+  position: absolute;
+  right: 10px;
+  top: 88px;
+  width: 20%;
+  height: 60%;
 }

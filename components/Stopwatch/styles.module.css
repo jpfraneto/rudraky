@@ -26,8 +26,22 @@
   border-radius: 4px;
 }
 
+.controlsContainer button {
+  bottom: 8px;
+  left: 50%;
+  padding: 8px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  border-radius: 8px;
+  animation: fadeIn 1s linear;
+  opacity: 1;
+}
+
 .messagesContainer {
-  animation: fadeIn 2s linear;
+  animation: fadeIn 1s linear;
 }
 
 .timeAlert {

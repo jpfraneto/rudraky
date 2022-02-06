@@ -14,10 +14,6 @@
 }
 
 .nextEx {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
   padding: 8px;
   font-weight: bold;
   background-color: black;

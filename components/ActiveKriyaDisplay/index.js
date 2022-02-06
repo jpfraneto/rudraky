@@ -1,20 +1,27 @@
 import { useState, useEffect } from 'react/cjs/react.development';
 import StopwatchContainer from '../StopwatchContainer';
+import Button from '../Button';
 import KriyaCommenter from '../KriyaCommenter';
 import styles from './styles.module.css';
 
 const ActiveKriyaDisplay = ({
   currentEx,
   setCurrentExIndex,
-  showStopwatch,
   setShowStopwatch,
   currentExIndex,
   thisKriya,
   setCurrentEx,
+  setThisKriya,
 }) => {
   const [finished, setFinished] = useState(false);
   const handleNextEx = () => {
     if (thisKriya.exercizes.length > currentExIndex + 1) {
+      setThisKriya(prevKriyaState => {
+        const prevExercizes = prevKriyaState.exercizes;
+        prevExercizes[currentExIndex].active = -1;
+        prevExercizes[currentExIndex + 1].active = 0;
+        return { ...prevKriyaState, exercizes: prevExercizes };
+      });
       const nextEx = thisKriya.exercizes[currentExIndex + 1];
       setCurrentExIndex(prev => prev + 1);
       setCurrentEx(nextEx);
@@ -36,11 +43,14 @@ const ActiveKriyaDisplay = ({
             currentEx={currentEx}
             setShowStopwatch={setShowStopwatch}
           />
-          <button onClick={handleNextEx} className={styles.nextEx}>
-            {thisKriya.exercizes.length === currentExIndex + 1
-              ? 'Finalizar Kriya'
-              : 'Siguiente Ejercicio'}
-          </button>
+          <Button
+            text={
+              thisKriya.exercizes.length === currentExIndex + 1
+                ? 'Finalizar Kriya'
+                : 'Siguiente Ejercicio'
+            }
+            actionOnClick={handleNextEx}
+          />
         </div>
       ) : (
         <KriyaCommenter thisKriya={thisKriya} />

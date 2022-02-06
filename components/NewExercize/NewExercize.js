@@ -1,16 +1,11 @@
 import styles from './styles.module.css';
 import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { createUniqueId } from '../../lib/functions';
 
-const createId = () => {
-  const unique_id = uuid();
-  const small_id = unique_id.slice(0, 8);
-  return small_id;
-};
-
-const NewExercize = ({ setKriya, setMissing }) => {
+const NewExercize = ({ kriya, setKriya, setMissing }) => {
   const [ex, setEx] = useState({
     durationType: 'Segundos',
+    id: createUniqueId(),
   });
   const handleChange = e => {
     setEx(prevEx => {
@@ -18,7 +13,6 @@ const NewExercize = ({ setKriya, setMissing }) => {
     });
   };
   const handleAddExercize = () => {
-    setEx(prevEx => ({ ...prevEx, id: createId() }));
     setMissing(prevMissing => {
       if (!prevMissing.includes(ex.section)) {
         return prevMissing;
@@ -28,20 +22,27 @@ const NewExercize = ({ setKriya, setMissing }) => {
       return prevMissing;
     });
     setKriya(prevKriya => {
-      ex.id = createId();
+      ex.id = createUniqueId();
       if (prevKriya.exercizes) {
         return { ...prevKriya, exercizes: [...prevKriya.exercizes, ex] };
       } else {
         return { ...prevKriya, exercizes: [ex] };
       }
     });
+    setEx(prevEx => ({
+      section: prevEx.section,
+      durationType: 'Segundos',
+      id: createUniqueId(),
+      exName: '',
+      descripcion: '',
+      exDuration: 0,
+    }));
   };
 
   return (
     <div className={styles.exContainer}>
-      <button onClick={() => console.log(ex)}>The ex is: </button>
       <p>Agrega un Nuevo Ejercicio</p>
-      <select name='section' onChange={handleChange}>
+      <select name='section' onChange={handleChange} value={ex.section}>
         <option>Elegir Sección de la Clase</option>
         <option value='Invocación'>Invocación</option>
         <option value='Calentamiento'>Calentamiento</option>
@@ -52,23 +53,30 @@ const NewExercize = ({ setKriya, setMissing }) => {
       </select>
       <input
         onChange={handleChange}
+        value={ex.exName}
         type='text'
         placeholder='Nombre Ejercicio'
         name='exName'
       />
       <input
         onChange={handleChange}
+        value={ex.exDuration}
         type='number'
         min={0}
         placeholder='Duración'
         name='exDuration'
       />
-      <select name='durationType' onChange={handleChange}>
+      <select
+        name='durationType'
+        value={ex.durationType}
+        onChange={handleChange}
+      >
         <option value='Segundos'>Segundos</option>
         <option value='Repeticiones'>Repeticiones</option>
       </select>
       <textarea
         className={styles.textareaElement}
+        value={ex.descripcion}
         placeholder='Describe el ejercicio'
         name='descripcion'
         onChange={handleChange}

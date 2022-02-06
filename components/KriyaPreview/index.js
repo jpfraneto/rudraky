@@ -2,7 +2,7 @@ import { Droppable, DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 import { AiOutlineConsoleSql, AiTwotoneDelete } from 'react-icons/ai';
-import { FaEdit } from 'react-icons/fa';
+import { useRouter } from 'next/router';
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -14,6 +14,8 @@ const reorder = (list, startIndex, endIndex) => {
 
 const KriyaPreview = ({ kriya, setKriya, missing, setMissing }) => {
   const [winReady, setWinReady] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     setWinReady(true);
@@ -36,6 +38,7 @@ const KriyaPreview = ({ kriya, setKriya, missing, setMissing }) => {
         'the response from the server after uploading the kriya is: ',
         res
       );
+      router.push(`/kriyas/${res.kriyaId}`);
     }
   };
 

@@ -1,13 +1,22 @@
 import styles from '../../styles/Kriyas.module.css';
 import KriyaElementDisplay from '../../components/KriyaElementDisplay';
+import Link from 'next/link';
 
 const Kriyas = ({ kriyas }) => {
   return (
     <div className={styles.container}>
-      {kriyas &&
-        kriyas.map(kriya => {
-          return <KriyaElementDisplay key={kriya._id} kriya={kriya} />;
-        })}
+      <div className={styles.kriyasDisplay}>
+        {kriyas &&
+          kriyas.map(kriya => {
+            return <KriyaElementDisplay key={kriya._id} kriya={kriya} />;
+          })}
+      </div>
+
+      <div className={styles.newKriyaBtn}>
+        <Link href='/kriyas/nuevo'>
+          <a>Agregar Nuevo Kriya</a>
+        </Link>
+      </div>
     </div>
   );
 };

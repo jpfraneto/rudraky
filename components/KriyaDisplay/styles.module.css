@@ -36,7 +36,7 @@
   justify-content: center;
   margin: 5px 0;
   width: fit-content;
-  border: solid white 2px;
+  border: solid black 2px;
   background-color: black;
   border-radius: 8px;
 }
@@ -46,31 +46,12 @@
   border-radius: 8px;
   border: solid black 2px;
   padding: 3px 7px;
-  background-color: rgb(179, 218, 228);
+  background-color: rgb(130, 166, 175);
 }
 
 .sectionSpan {
   margin: 0 4px;
   width: 144px;
-}
-
-.startKiryaBtn {
-  margin: 0 8px;
-  padding: 4px;
-  background-color: darkseagreen;
-  border: solid black 1px;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 8px;
-  font-weight: bold;
-  background-color: black;
-  color: white;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-.startKiryaBtn:hover {
-  background-color: rgb(49, 139, 97);
 }
 
 .kriyaSignature {

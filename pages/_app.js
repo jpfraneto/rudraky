@@ -3,6 +3,7 @@ import { useRouter, Router } from 'next/router';
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Loader from '../components/Loader';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +26,10 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        <title>Rudra KY</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
       <Navbar />
       {isRouteChanging ? <Loader /> : <Component {...pageProps} />}
     </>

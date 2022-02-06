@@ -2,6 +2,7 @@ import styles from '../../styles/Kriya.module.css';
 import { useRouter } from 'next/router';
 import ActiveKriyaDisplay from '../../components/ActiveKriyaDisplay';
 import KriyaDisplay from '../../components/KriyaDisplay';
+import KriyaCommentsDisplay from '../../components/KriyaCommentsDisplay';
 import { useState, useRef } from 'react';
 
 export async function getServerSideProps(context) {
@@ -39,11 +40,13 @@ const DisplayKriya = ({ fetchedKriya }) => {
           setCurrentExIndex={setCurrentExIndex}
           setStartedKriya={setStartedKriya}
           startedKriya={startedKriya}
+          setThisKriya={setThisKriya}
         />
       </div>
       {startedKriya && (
         <div className={styles.rightDiv}>
           <ActiveKriyaDisplay
+            setThisKriya={setThisKriya}
             setCurrentExIndex={setCurrentExIndex}
             currentExIndex={currentExIndex}
             showStopwatch={showStopwatch}
@@ -53,6 +56,11 @@ const DisplayKriya = ({ fetchedKriya }) => {
             setCurrentEx={setCurrentEx}
             thisKriya={thisKriya}
           />
+        </div>
+      )}
+      {!startedKriya && thisKriya.comments && (
+        <div className={styles.commentsContainer}>
+          <KriyaCommentsDisplay comments={thisKriya.comments} />
         </div>
       )}
     </div>

@@ -1,8 +1,14 @@
 import styles from './styles.module.css';
 import { useState } from 'react';
+import { createUniqueId } from '../../lib/functions';
+import { useRouter } from 'next/router';
+import Button from '../Button';
 
 const KriyaCommenter = ({ thisKriya }) => {
   const [commentElement, setCommentElement] = useState(null);
+
+  const router = useRouter();
+
   const handleChange = e => {
     setCommentElement(before => ({
       ...before,
@@ -10,6 +16,7 @@ const KriyaCommenter = ({ thisKriya }) => {
     }));
   };
   const submitKriyaCmmment = async () => {
+    commentElement.id = createUniqueId();
     const reqParams = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -17,16 +24,17 @@ const KriyaCommenter = ({ thisKriya }) => {
     };
     const res = await fetch('/api/kriyas', reqParams);
     const data = await res.json();
-    console.log('the data from the response is: ', data);
+    router.push('/kriyas/success');
   };
   return (
     <div className={styles.blueBack}>
+      <h3>Felicitaciones por terminar una nueva práctica!</h3>
       <div>
         <textarea
           onChange={handleChange}
           className={styles.commentArea}
           name='comment'
-          placeholder='Agrega tu Comentario de la Práctica'
+          placeholder='Agrega algún comentario si es que tienes'
         />
         <div>
           <input
@@ -36,7 +44,7 @@ const KriyaCommenter = ({ thisKriya }) => {
           />
           <p>¿Cuál es tu nombre?</p>
         </div>
-        <button onClick={submitKriyaCmmment}>Agregar Comentario</button>
+        <Button text='Agregar Comentario' actionOnClick={submitKriyaCmmment} />
       </div>
     </div>
   );
