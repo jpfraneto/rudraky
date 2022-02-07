@@ -1,0 +1,28 @@
+.pageContainer {
+  background-color: aliceblue;
+  padding: 16px;
+  text-align: center;
+  width: 60%;
+  border: solid black 1px;
+  margin: 22px auto;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs input {
+  height: 22px;
+  width: 333px;
+  margin: 8px;
+}
+
+.inputContainer {
+  border: solid black 1px;
+  padding: 2px;
+  margin: 4px;
+  background-color: aqua;
+}

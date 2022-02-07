@@ -49,7 +49,12 @@ const Navbar = () => {
                 {username ? (
                   <span className={styles.username}>
                     {username}{' '}
-                    <Image src='/icons/expand.svg' width='24px' height='24px' />
+                    <Image
+                      src='/icons/expand.svg'
+                      width='24px'
+                      height='24px'
+                      alt='username picture'
+                    />
                   </span>
                 ) : (
                   <span>Iniciar Sesión</span>

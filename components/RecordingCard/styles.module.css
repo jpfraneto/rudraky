@@ -1,0 +1,7 @@
+.recordingCardContainer {
+  padding: 8px;
+  border: solid black 1px;
+  background-color: beige;
+  cursor: pointer;
+  margin: 8px;
+}

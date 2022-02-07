@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import { useRouter, Router } from 'next/router';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Loader from '../components/Loader';
@@ -8,6 +8,8 @@ import Head from 'next/head';
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isRouteChanging, setIsRouteChanging] = useState(false);
+  const router = useRouter();
+
   useEffect(() => {
     const routeChangeStartHandler = () => setIsRouteChanging(true);
 
@@ -21,8 +23,7 @@ function MyApp({ Component, pageProps }) {
       router.events.off('routeChangeComplete', routeChangeEndHandler);
       router.events.off('routeChangeError', routeChangeEndHandler);
     };
-  }, []);
-  const router = useRouter();
+  }, [router.events]);
 
   return (
     <>

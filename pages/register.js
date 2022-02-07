@@ -19,7 +19,6 @@ const Register = () => {
       body: JSON.stringify({ username: name }),
     });
     const data = await res.json();
-    console.log('the data is: ', data);
   };
   const handleGetUserIds = async e => {
     e.preventDefault();
@@ -52,7 +51,7 @@ const Register = () => {
       </Head>
       <div className={styles.loginDiv}>
         <div className={styles.wrapper}>
-          {selectedUser && <strong>Selected User's Id: {selectedUser}</strong>}
+          {selectedUser && <strong>Selected User Id: {selectedUser}</strong>}
           {name && `the name is ${name}`}
           <br />
           {updateText && `the update text is ${updateText}`}
@@ -68,6 +67,7 @@ const Register = () => {
           {users &&
             users.map(user => (
               <p
+                key={user._id}
                 onClick={() => {
                   setSelectedUser(user._id);
                 }}

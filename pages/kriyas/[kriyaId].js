@@ -52,7 +52,6 @@ const DisplayKriya = ({ fetchedKriya }) => {
             showStopwatch={showStopwatch}
             setShowStopwatch={setShowStopwatch}
             currentEx={currentEx}
-            currentExIndex={currentExIndex}
             setCurrentEx={setCurrentEx}
             thisKriya={thisKriya}
           />

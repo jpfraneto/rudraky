@@ -1,0 +1,11 @@
+.outerDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 22px;
+}
+
+.recordingsList {
+  display: flex;
+}
