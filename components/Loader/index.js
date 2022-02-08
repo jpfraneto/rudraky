@@ -1,17 +1,17 @@
 import styles from './styles.module.css';
+import { quotes } from '../../lib/quotes';
 
 const Loader = () => {
+  const randomQuote = quotes[Math.floor(quotes.length * Math.random())];
   return (
     <div className={styles.container}>
-      <h2>Cargando</h2>
-      <h4>
-        Alineate con la verdad. Si haces lo correcto para tu propio corazón,
-        nunca errarás; tampoco para los demás. No lo dudes. <br />
-        <span>
-          {' '}
-          <em>Mooji</em>
-        </span>
-      </h4>
+      <div className={styles.spinner}></div>
+      <div className={styles.quoteContainer}>
+        <h3>{randomQuote.quote}</h3>
+        <h4>
+          <em>{randomQuote.author}</em>
+        </h4>
+      </div>
     </div>
   );
 };

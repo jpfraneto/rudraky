@@ -3,6 +3,7 @@
   height: fit-content;
   padding: 8px;
   margin: 4px 12px;
+  background-color: beige;
 }
 
 .kriyaElementDisplayContainer:hover {

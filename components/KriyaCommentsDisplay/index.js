@@ -4,18 +4,22 @@ import styles from './styles.module.css';
 const KriyaCommentsDisplay = ({ comments }) => {
   return (
     <div className={styles.container}>
-      {comments &&
-        comments.map(comment => {
-          return (
-            <div className={styles.commentContainer} key={comment.id}>
-              <p>
-                <strong>{comment.commentAuthor}</strong>
-              </p>
-              <p>{comment.comment}</p>
-              {comment.date && <Moment date={comment.date} />}
-            </div>
-          );
-        })}
+      {comments && (
+        <div>
+          <h3 className={styles.fixedText}>Comentarios de este kriya</h3>
+          {comments.map(comment => {
+            return (
+              <div className={styles.commentContainer} key={comment.id}>
+                <p>
+                  <strong>{comment.commentAuthor}</strong>
+                </p>
+                <p>{comment.comment}</p>
+                {comment.date && <Moment date={comment.date} />}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

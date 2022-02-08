@@ -2,7 +2,6 @@ const Discourse = () => {
   const handleFetch = async () => {
     const res = await fetch('/api/users/discoursesso');
     const data = await res.json();
-    console.log('the data is: ', data);
   };
   return (
     <div>

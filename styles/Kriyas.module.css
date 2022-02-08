@@ -1,5 +1,4 @@
 .container {
-  background-color: pink;
   height: calc(100vh - 44px);
   display: flex;
   padding: 12px 8px;
@@ -8,7 +7,14 @@
 
 .newKriyaBtn {
   padding: 8px;
-  background-color: aqua;
+  background: rgb(252, 70, 107);
+  background: linear-gradient(
+    90deg,
+    rgba(252, 70, 107, 1) 0%,
+    rgba(186, 78, 157, 1) 33%,
+    rgba(197, 152, 85, 1) 65%,
+    rgba(78, 79, 186, 1) 98%
+  );
   font-size: 2rem;
   width: fit-content;
   height: fit-content;
@@ -18,6 +24,9 @@
 .kriyasDisplay {
   display: flex;
   flex-wrap: wrap;
+  height: fit-content;
+  max-height: 80vh;
+  overflow-y: scroll;
   width: 100%;
 }
 

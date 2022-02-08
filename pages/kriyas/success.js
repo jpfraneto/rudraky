@@ -1,8 +1,23 @@
+import styles from '../../styles/Success.module.css';
+
 const KriyaSuccess = () => {
   return (
-    <div>
-      Muchas felicitaciones por terminar de dar una nueva clase de Kundalini
-      Yoga. El mundo te lo agradece :)
+    <div className={styles.container}>
+      <div className={styles.textContainer}>
+        <div className={styles.text}>
+          Que todos los seres sean felices.
+          <div className={styles.fadingEffect}></div>
+        </div>
+        <div className={styles.text}>
+          Que todos los seres alcancen la paz.
+          <div className={styles.fadingEffect}></div>
+        </div>
+        <div className={styles.text}>
+          Que todos los seres se liberen.
+          <div className={styles.fadingEffect}></div>
+        </div>
+        <p className={styles.satNam}>Sat Nam</p>
+      </div>
     </div>
   );
 };

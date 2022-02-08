@@ -16,15 +16,17 @@ const KriyaCommenter = ({ thisKriya }) => {
     }));
   };
   const submitKriyaCmmment = async () => {
-    commentElement.id = createUniqueId();
-    const reqParams = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ kriyaId: thisKriya._id, commentElement }),
-    };
-    const res = await fetch('/api/kriyas', reqParams);
-    const data = await res.json();
-    router.push('/kriyas/success');
+    if (commentElement) {
+      commentElement.id = createUniqueId();
+      const reqParams = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ kriyaId: thisKriya._id, commentElement }),
+      };
+      const res = await fetch('/api/kriyas', reqParams);
+      const data = await res.json();
+      router.push('/kriyas/success');
+    }
   };
   return (
     <div className={styles.blueBack}>
@@ -40,11 +42,17 @@ const KriyaCommenter = ({ thisKriya }) => {
           <input
             onChange={handleChange}
             name='commentAuthor'
+            placeholder='Nombre'
             className={styles.commentInput}
           />
           <p>¿Cuál es tu nombre?</p>
         </div>
-        <Button text='Agregar Comentario' actionOnClick={submitKriyaCmmment} />
+        {commentElement && (
+          <Button
+            text='Agregar Comentario'
+            actionOnClick={submitKriyaCmmment}
+          />
+        )}
       </div>
     </div>
   );

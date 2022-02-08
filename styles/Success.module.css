@@ -1,0 +1,95 @@
+.container {
+  height: calc(100vh - 44px);
+  background-color: bisque;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textContainer {
+  font-size: 2rem;
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.text {
+  position: relative;
+  line-height: 2em;
+  overflow: hidden;
+}
+.fadingEffect {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 0%;
+  background: bisque;
+  -moz-animation: showHide 2s ease-in; /* Firefox */
+  -webkit-animation: showHide 2s ease-in; /* Safari and Chrome */
+  -ms-animation: showHide 2s ease-in; /* IE10 */
+  -o-animation: showHide 2s ease-in; /* Opera */
+  animation: showHide 2s ease-in;
+}
+
+@-webkit-keyframes showHide {
+  /* Chrome, Safari */
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@-moz-keyframes showHide {
+  /* FF */
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@-ms-keyframes showHide {
+  /* IE10 */
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.satNam {
+  animation: fadeIn 4s linear;
+  opacity: 1;
+  font-size: 2rem;
+  background-color: aliceblue;
+  border-radius: 100%;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 22px;
+  box-shadow: inset 0 0 50px #fff, /* inner white */ inset 20px 0 80px #f0f,
+    /* inner left magenta short */ inset -20px 0 80px #0ff,
+    /* inner right cyan short */ inset 20px 0 300px #f0f,
+    /* inner left magenta broad */ inset -20px 0 300px #0ff,
+    /* inner right cyan broad */ 0 0 50px #fff,
+    /* outer white */ -10px 0 80px #f0f,
+    /* outer left magenta */ 10px 0 80px #0ff; /* outer right cyan */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    font-size: 0;
+  }
+  50% {
+    opacity: 0;
+    font-size: 1rem;
+  }
+  100% {
+    opacity: 1;
+    font-size: 2rem;
+  }
+}

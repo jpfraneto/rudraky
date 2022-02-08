@@ -16,14 +16,14 @@ const RecordingDisplay = ({ recording }) => {
         alt='Clase de Fernando Igor'
       />
       <p>
-        <strong>Profesor:</strong> {recording.profesor}
+        <strong>Profesor: </strong> {recording.profesor}
       </p>
       <p>
-        <strong>Fecha:</strong>
+        <strong>Fecha: </strong>
         <Moment date={recording.date} />
       </p>
       <p>
-        <strong>Link Zoom:</strong>
+        <strong>Link Zoom: </strong>
         <a
           style={{ color: 'blue' }}
           target='_blank'
@@ -34,12 +34,12 @@ const RecordingDisplay = ({ recording }) => {
         </a>
       </p>
       <p>
-        <strong>Clave Zoom:</strong>
+        <strong>Clave Zoom: </strong>
         {recording.zoomPassword}
       </p>
       <br />
       <Button text='Volver' actionOnClick={() => router.push('/recordings')} />
-      <RecordingComments />
+      <RecordingComments commentsProp={recording.comments} />
     </div>
   );
 };

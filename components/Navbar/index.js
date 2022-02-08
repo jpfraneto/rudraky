@@ -29,21 +29,16 @@ const Navbar = () => {
       <div className={styles.rightNav}>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
-            <Link href='/historia'>
-              <a>Historia</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href='/teoria'>
-              <a>Teoría</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>
             <Link href='/kriyas'>
               <a>Kriyas</a>
             </Link>
           </li>
-          <li>
+          <li className={styles.navItem}>
+            <Link href='/recordings'>
+              <a>Grabaciones</a>
+            </Link>
+          </li>
+          {/* <li>
             <div className={styles.navContainer}>
               <p className={styles.usernameBtn} onClick={handleDropdown}>
                 {username ? (
@@ -75,8 +70,8 @@ const Navbar = () => {
                   <div className={styles.lineWrapper}></div>
                 </div>
               )}
-            </div>
-          </li>
+            </div> 
+          </li>*/}
         </ul>
       </div>
     </div>

@@ -5,3 +5,18 @@
   margin-top: 22px;
   padding: 4px;
 }
+
+.newCommentContainer {
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+  margin-top: 22px;
+  padding: 8px;
+  background-color: rgb(111, 221, 184);
+}
+
+.newCommentContainer textarea {
+  width: 88%;
+  padding: 3px;
+  height: 200px;
+}

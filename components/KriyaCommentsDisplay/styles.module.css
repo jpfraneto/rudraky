@@ -1,8 +1,10 @@
 .container {
-  background-color: blueviolet;
+  background-color: pink;
   height: 100%;
   padding: 8px;
+  text-align: center;
   overflow-y: scroll;
+  position: relative;
 }
 
 .commentContainer {

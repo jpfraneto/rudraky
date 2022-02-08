@@ -21,20 +21,21 @@ export default async function handler(req, res) {
 const getRecordings = async (req, res) => {
   let { db } = await connectToDatabase();
   const recordings = await db.collection('recordings').find({}).toArray();
+  console.log('the recordings are ', recordings);
   return res.json(recordings);
 };
 
 const updateRecording = async (req, res) => {
   let { db } = await connectToDatabase();
-  req.body.commentElement.date = new Date().getTime();
+  req.body.newComment.date = new Date().getTime();
   await db.collection('recordings').updateOne(
     {
       _id: new ObjectId(req.body.recordingId),
     },
-    { $push: { comments: req.body.commentElement } }
+    { $push: { comments: req.body.newComment } }
   );
   return res.json({
-    message: `Recording updated successfully with the comment from ${req.body.commentElement.commentAuthor}`,
+    message: `Recording updated successfully with the comment from ${req.body.newComment.commenterName}`,
     success: true,
   });
 };

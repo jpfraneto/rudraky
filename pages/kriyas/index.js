@@ -1,5 +1,5 @@
 import styles from '../../styles/Kriyas.module.css';
-import KriyaElementDisplay from '../../components/KriyaElementDisplay';
+import KriyaElementDisplay from '../../components/KriyaElementCard';
 import Link from 'next/link';
 
 const Kriyas = ({ kriyas }) => {

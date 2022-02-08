@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './styles.module.css';
 import { FaRegCommentDots } from 'react-icons/fa';
 
-const KriyaElementDisplay = ({ kriya }) => {
+const KriyaElementCard = ({ kriya }) => {
   return (
     <div className={styles.kriyaElementDisplayContainer}>
       <Link href={`/kriyas/${kriya._id}`}>
@@ -19,4 +19,4 @@ const KriyaElementDisplay = ({ kriya }) => {
   );
 };
 
-export default KriyaElementDisplay;
+export default KriyaElementCard;
