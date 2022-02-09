@@ -6,6 +6,12 @@
   padding: 4px;
 }
 
+.individualCommentContainer {
+  background-color: brown;
+  padding: 8px;
+  margin: 4px 0;
+}
+
 .newCommentContainer {
   display: flex;
   flex-direction: column;

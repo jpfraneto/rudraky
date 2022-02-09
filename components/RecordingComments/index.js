@@ -2,11 +2,13 @@ import styles from './styles.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { createUniqueId } from '../../lib/functions';
+import Moment from 'react-moment';
 
 const RecordingComments = ({ commentsProp }) => {
-  const [comments, setComments] = useState(commentsProp);
+  const [comments, setComments] = useState(commentsProp || []);
   const [commentFormDisplay, setCommentFormDisplay] = useState(false);
   const [newComment, setNewComment] = useState(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = e => {
@@ -18,6 +20,7 @@ const RecordingComments = ({ commentsProp }) => {
 
   const handleCommentSubmit = async () => {
     if (newComment) {
+      setLoading(true);
       newComment.id = createUniqueId();
       const reqParams = {
         method: 'PUT',
@@ -27,22 +30,27 @@ const RecordingComments = ({ commentsProp }) => {
       const res = await fetch(`/api/recordings`, reqParams);
       const data = await res.json();
       setComments(prevComments => [...prevComments, newComment]);
+      setLoading(false);
     }
   };
   return (
     <div className={styles.commentsContainer}>
       <h3>Comentarios de Esta Clase:</h3>
-      {comments ? (
-        comments.map(comment => {
-          <div>
-            <p>{comment.text}</p>
-            <p>{comment.author}</p>
-            <p>{comment.date}</p>
-          </div>;
-        })
-      ) : (
-        <p>Aún no hay Comentarios</p>
-      )}
+
+      {comments.map(comment => {
+        return (
+          <div className={styles.individualCommentContainer}>
+            <p>{comment.comment}</p>
+            <p>
+              <strong>{comment.commenterName}</strong>
+            </p>
+            <p>
+              <Moment date={comment.date || new Date()} />
+            </p>
+          </div>
+        );
+      })}
+
       {commentFormDisplay ? (
         <div className={styles.newCommentContainer}>
           <div>

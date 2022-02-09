@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import RecordingComments from '../RecordingComments';
 
 const RecordingDisplay = ({ recording }) => {
+  console.log('the recording is: ', recording);
   const router = useRouter();
   return (
     <div className={styles.recordingContainer}>

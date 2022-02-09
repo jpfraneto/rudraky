@@ -21,7 +21,6 @@ export default async function handler(req, res) {
 const getRecordings = async (req, res) => {
   let { db } = await connectToDatabase();
   const recordings = await db.collection('recordings').find({}).toArray();
-  console.log('the recordings are ', recordings);
   return res.json(recordings);
 };
 
@@ -45,6 +44,7 @@ const addRecording = async (req, res) => {
     let { db } = await connectToDatabase();
     const newRecording = {
       ...req.body,
+      comments: [],
     };
     const serverResponse = await db
       .collection('recordings')
