@@ -21,7 +21,8 @@ const RecordingCard = ({ recording }) => {
             <strong>Kriya: </strong> {recording.kriya}
           </p>
           <p>
-            <strong>Fecha: </strong> <Moment date={recording.date} />
+            <strong>Fecha: </strong>{' '}
+            <Moment format={'DD/MM/YYYY hh:mm:ss'} date={recording.date} />
           </p>
         </div>
       </Link>

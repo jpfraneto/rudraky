@@ -1,15 +1,15 @@
-import styles from '../../styles/Kriya.module.css';
-import { useRouter } from 'next/router';
-import ActiveKriyaDisplay from '../../components/ActiveKriyaDisplay';
-import KriyaDisplay from '../../components/KriyaDisplay';
-import KriyaCommentsDisplay from '../../components/KriyaCommentsDisplay';
+import styles from '../../../styles/Kriya.module.css';
+import ActiveKriyaDisplay from '../../../components/ActiveKriyaDisplay';
+import KriyaDisplay from '../../../components/KriyaDisplay';
+import KriyaDescription from '../../../components/KriyaDescription';
+import KriyaCommentsDisplay from '../../../components/KriyaCommentsDisplay';
 import { useState, useRef } from 'react';
+import { getCurrentUrl } from '../../../lib/functions';
 
 export async function getServerSideProps(context) {
-  let dev = process.env.NODE_ENV !== 'production';
-  let { DEV_URL, PROD_URL } = process.env;
+  const absoluteRoute = getCurrentUrl();
   let response = await fetch(
-    `${dev ? DEV_URL : PROD_URL}/api/kriyas/${context.query.kriyaId}`
+    `${absoluteRoute}/api/kriyas/${context.query.kriyaId}`
   );
   const fetchedKriya = await response.json();
   return {
@@ -43,23 +43,27 @@ const DisplayKriya = ({ fetchedKriya }) => {
           setThisKriya={setThisKriya}
         />
       </div>
-      {startedKriya && (
+      {(startedKriya || thisKriya.comments) && (
         <div className={styles.rightDiv}>
-          <ActiveKriyaDisplay
-            setThisKriya={setThisKriya}
-            setCurrentExIndex={setCurrentExIndex}
-            currentExIndex={currentExIndex}
-            showStopwatch={showStopwatch}
-            setShowStopwatch={setShowStopwatch}
-            currentEx={currentEx}
-            setCurrentEx={setCurrentEx}
-            thisKriya={thisKriya}
-          />
-        </div>
-      )}
-      {!startedKriya && thisKriya.comments && (
-        <div className={styles.commentsContainer}>
-          <KriyaCommentsDisplay comments={thisKriya.comments} />
+          {startedKriya ? (
+            <ActiveKriyaDisplay
+              setThisKriya={setThisKriya}
+              setCurrentExIndex={setCurrentExIndex}
+              currentExIndex={currentExIndex}
+              showStopwatch={showStopwatch}
+              setShowStopwatch={setShowStopwatch}
+              currentEx={currentEx}
+              setCurrentEx={setCurrentEx}
+              thisKriya={thisKriya}
+            />
+          ) : (
+            <>
+              {thisKriya.description && (
+                <KriyaDescription description={thisKriya.description} />
+              )}
+              <KriyaCommentsDisplay comments={thisKriya.comments} />
+            </>
+          )}
         </div>
       )}
     </div>

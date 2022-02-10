@@ -1,8 +1,10 @@
 import styles from './styles.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Spinner from '../Spinner';
 import { createUniqueId } from '../../lib/functions';
 import Moment from 'react-moment';
+import Button from '../Button';
 
 const RecordingComments = ({ commentsProp }) => {
   const [comments, setComments] = useState(commentsProp || []);
@@ -31,6 +33,8 @@ const RecordingComments = ({ commentsProp }) => {
       const data = await res.json();
       setComments(prevComments => [...prevComments, newComment]);
       setLoading(false);
+      setCommentFormDisplay(false);
+      setNewComment({});
     }
   };
   return (
@@ -39,48 +43,62 @@ const RecordingComments = ({ commentsProp }) => {
 
       {comments.map(comment => {
         return (
-          <div className={styles.individualCommentContainer}>
+          <div key={comment._id} className={styles.individualCommentContainer}>
             <p>{comment.comment}</p>
             <p>
               <strong>{comment.commenterName}</strong>
             </p>
-            <p>
-              <Moment date={comment.date || new Date()} />
-            </p>
+            <Moment
+              className={styles.dateDisplayFormat}
+              format={'DD/MM/YYYY hh:mm:ss'}
+              date={comment.date || new Date()}
+            />
+            <hr className={styles.horizontalRule} />
           </div>
         );
       })}
 
       {commentFormDisplay ? (
-        <div className={styles.newCommentContainer}>
-          <div>
-            <p>Agrega un nuevo comentario para esta clase:</p>
-            <textarea
-              name='comment'
-              onChange={handleChange}
-              placeholder='Agrega comentario'
-            />
+        loading ? (
+          <Spinner />
+        ) : (
+          <div className={styles.newCommentContainer}>
+            <div>
+              <p>Nuevo Comentario:</p>
+              <textarea
+                name='comment'
+                onChange={handleChange}
+                placeholder='Lo que quieras comentar.'
+              />
+            </div>
+            <div>
+              <p>¿Quién eres?</p>
+              <input
+                onChange={handleChange}
+                name='commenterName'
+                placeholder='Tu Nombre'
+              />
+            </div>
+            <div>
+              <br />
+              <Button
+                text='Agregar Comentario'
+                actionOnClick={handleCommentSubmit}
+              />
+              <Button
+                text='Cancelar'
+                actionOnClick={() => setCommentFormDisplay(false)}
+              />
+            </div>
           </div>
-          <div>
-            <p>¿Quién eres?</p>
-            <input
-              onChange={handleChange}
-              name='commenterName'
-              placeholder='Tu Nombre'
-            />
-          </div>
-          <div>
-            <button onClick={handleCommentSubmit}>Agregar Comentario</button>
-          </div>
-        </div>
+        )
       ) : (
-        <button
-          onClick={() => {
-            setCommentFormDisplay(true);
-          }}
-        >
-          Nuevo Comentario
-        </button>
+        <>
+          <Button
+            text='Nuevo Comentario'
+            actionOnClick={() => setCommentFormDisplay(true)}
+          />
+        </>
       )}
     </div>
   );

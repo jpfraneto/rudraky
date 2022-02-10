@@ -6,22 +6,15 @@ import { useRouter } from 'next/router';
 import RecordingComments from '../RecordingComments';
 
 const RecordingDisplay = ({ recording }) => {
-  console.log('the recording is: ', recording);
   const router = useRouter();
   return (
     <div className={styles.recordingContainer}>
-      <Image
-        src='/images/clases/clase-fernando-igor-072022II.png'
-        width={600}
-        height={300}
-        alt='Clase de Fernando Igor'
-      />
       <p>
         <strong>Profesor: </strong> {recording.profesor}
       </p>
       <p>
         <strong>Fecha: </strong>
-        <Moment date={recording.date} />
+        <Moment format={'DD/MM/YYYY hh:mm:ss'} date={recording.date} />
       </p>
       <p>
         <strong>Link Zoom: </strong>
@@ -38,7 +31,6 @@ const RecordingDisplay = ({ recording }) => {
         <strong>Clave Zoom: </strong>
         {recording.zoomPassword}
       </p>
-      <br />
       <Button text='Volver' actionOnClick={() => router.push('/recordings')} />
       <RecordingComments commentsProp={recording.comments} />
     </div>

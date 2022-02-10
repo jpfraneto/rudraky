@@ -1,5 +1,5 @@
 import styles from '../../styles/Kriyas.module.css';
-import KriyaElementDisplay from '../../components/KriyaElementCard';
+import KriyaElementCard from '../../components/KriyaElementCard';
 import Link from 'next/link';
 
 const Kriyas = ({ kriyas }) => {
@@ -8,7 +8,7 @@ const Kriyas = ({ kriyas }) => {
       <div className={styles.kriyasDisplay}>
         {kriyas &&
           kriyas.map(kriya => {
-            return <KriyaElementDisplay key={kriya._id} kriya={kriya} />;
+            return <KriyaElementCard key={kriya._id} kriya={kriya} />;
           })}
       </div>
 

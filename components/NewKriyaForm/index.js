@@ -27,6 +27,16 @@ const NewKriyaForm = ({ kriya, setKriya, setMissing, missing }) => {
         value={kriya.author}
         onChange={handleChange}
       />
+      <br />
+      Descripción: <br />
+      <textarea
+        type='text'
+        className={styles.descriptionBox}
+        placeholder='Lo más detallado posible'
+        name='description'
+        value={kriya.description}
+        onChange={handleChange}
+      />
       <NewExercize setKriya={setKriya} setMissing={setMissing} />
       {missing.length > 0 && (
         <div>

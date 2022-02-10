@@ -47,12 +47,14 @@ const KriyaCommenter = ({ thisKriya }) => {
           />
           <p>¿Cuál es tu nombre?</p>
         </div>
-        {commentElement && (
-          <Button
-            text='Agregar Comentario'
-            actionOnClick={submitKriyaCmmment}
-          />
-        )}
+        {commentElement &&
+          commentElement.comment &&
+          commentElement.commentAuthor && (
+            <Button
+              text='Agregar Comentario'
+              actionOnClick={submitKriyaCmmment}
+            />
+          )}
       </div>
     </div>
   );

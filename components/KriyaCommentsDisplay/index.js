@@ -14,7 +14,13 @@ const KriyaCommentsDisplay = ({ comments }) => {
                   <strong>{comment.commentAuthor}</strong>
                 </p>
                 <p>{comment.comment}</p>
-                {comment.date && <Moment date={comment.date} />}
+                {comment.date && (
+                  <Moment
+                    format='DD/MM/YYYY hh:mm:ss'
+                    date={comment.date}
+                    className={styles.dateFormatting}
+                  />
+                )}
               </div>
             );
           })}

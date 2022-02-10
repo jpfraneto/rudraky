@@ -1,13 +1,11 @@
 .commentsContainer {
   width: 100%;
-  background-color: aquamarine;
   border: solid black 1px;
   margin-top: 22px;
   padding: 4px;
 }
 
 .individualCommentContainer {
-  background-color: brown;
   padding: 8px;
   margin: 4px 0;
 }
@@ -25,4 +23,15 @@
   width: 88%;
   padding: 3px;
   height: 200px;
+}
+
+.dateDisplayFormat {
+  display: block;
+  font-size: 0.8rem;
+  text-align: end;
+}
+
+.horizontalRule {
+  color: black;
+  margin: 8px 0;
 }

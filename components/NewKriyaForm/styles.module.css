@@ -8,3 +8,9 @@
 .missingList {
   list-style-type: none;
 }
+
+.descriptionBox {
+  width: 100%;
+  height: 111px;
+  padding: 4px;
+}

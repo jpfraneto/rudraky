@@ -1,6 +1,11 @@
 .kriyaFormContainer {
-  height: calc(100vh - 44px);
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.newKriyaBtnContainer {
+  text-align: center;
+  display: block;
 }

@@ -3,16 +3,19 @@ import KriyaElement from '../KriyaElement';
 import Link from 'next/link';
 import Button from '../Button';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const KriyaDisplay = ({
   thisKriya,
   setCurrentEx,
   currentExIndex,
+  setCurrentExIndex,
   setShowStopwatch,
   setStartedKriya,
   startedKriya,
   setThisKriya,
 }) => {
+  const router = useRouter();
   const handleStartKriya = () => {
     setStartedKriya(true);
     setThisKriya(prevKriya => {
@@ -22,6 +25,20 @@ const KriyaDisplay = ({
     });
     setCurrentEx(thisKriya.exercizes[currentExIndex]);
     setShowStopwatch(true);
+  };
+
+  const stopKriya = () => {
+    const confirmBox = window.confirm('Seguro que quieres empezar de cero?');
+    if (confirmBox) {
+      setStartedKriya(false);
+      setThisKriya(prevKriya => {
+        const updatedKriya = prevKriya;
+        updatedKriya.exercizes.forEach(ex => (ex.active = 1));
+        updatedKriya.exercizes[0].active = 0;
+        return updatedKriya;
+      });
+      setCurrentExIndex(0);
+    }
   };
 
   return (
@@ -51,13 +68,13 @@ const KriyaDisplay = ({
           </div>
         ))}
       </div>
+      {startedKriya && (
+        <Button text='Volver a Empezar' actionOnClick={stopKriya} />
+      )}
 
       {!startedKriya && (
         <>
           <Button text='Empezar Kriya' actionOnClick={handleStartKriya} />
-          <Link href='/kriyas'>
-            <a className={styles.startKiryaBtn}>Volver</a>
-          </Link>
         </>
       )}
     </div>
