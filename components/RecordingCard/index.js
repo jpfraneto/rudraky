@@ -5,14 +5,7 @@ import Moment from 'react-moment';
 const RecordingCard = ({ recording }) => {
   return (
     <div className={styles.recordingCardContainer} key={recording._id}>
-      <Link
-        passHref
-        href={{
-          pathname: `/recordings/[id]`,
-          query: recording,
-        }}
-        as={`/recordings/${recording._id}`}
-      >
+      <Link href={`/recordings/${recording._id}`}>
         <div>
           <p>
             <strong>Profesor: </strong> {recording.profesor}

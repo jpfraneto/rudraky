@@ -1,8 +1,8 @@
 .container {
   height: calc(100vh - 44px);
-  display: flex;
   padding: 12px 8px;
   position: relative;
+  text-align: center;
 }
 
 .newKriyaBtn {
@@ -24,10 +24,12 @@
 .kriyasDisplay {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   height: fit-content;
   max-height: 80vh;
   overflow-y: scroll;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .newKriyaBtn {

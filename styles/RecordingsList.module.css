@@ -1,11 +1,16 @@
 .outerDiv {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 22px;
+  text-align: center;
 }
 
 .recordingsList {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageDescription {
+  width: 44%;
+  margin: 0 auto;
 }

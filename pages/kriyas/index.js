@@ -5,6 +5,8 @@ import Link from 'next/link';
 const Kriyas = ({ kriyas }) => {
   return (
     <div className={styles.container}>
+      <h2>Kriyas</h2>
+      <p>Todos los kriyas que han creado compañeros. </p>
       <div className={styles.kriyasDisplay}>
         {kriyas &&
           kriyas.map(kriya => {

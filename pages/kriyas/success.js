@@ -1,5 +1,6 @@
 import styles from '../../styles/Success.module.css';
 import Router, { useRouter } from 'next/router';
+import Button from '../../components/Button';
 
 const KriyaSuccess = () => {
   const router = useRouter();
