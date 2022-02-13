@@ -13,6 +13,8 @@ const NewExercize = ({ kriya, setKriya, setMissing }) => {
     });
   };
   const handleAddExercize = () => {
+    if (!(ex.section && ex.exName && ex.exDuration))
+      return alert('there are missing parts of the exercize!');
     setMissing(prevMissing => {
       if (!prevMissing.includes(ex.section)) {
         return prevMissing;

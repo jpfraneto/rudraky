@@ -51,22 +51,23 @@ const KriyaDisplay = ({
         </span>
       </h2>
       <div className={styles.kriyaNavbar}>
-        {thisKriya.exercizes.map((ex, id) => (
-          <div
-            className={styles.ejercicio}
-            key={ex.id}
-            style={{
-              backgroundColor:
-                ex.active < 0 ? 'lightblue' : ex.active === 0 && 'green',
-            }}
-          >
-            <span className={styles.sectionSpan}>{ex.section} </span>
-            <span className={styles.nameSpan}>{ex.exName}</span>
-            <span className={styles.durationSpan}>
-              {ex.exDuration} {ex.durationType}
-            </span>
-          </div>
-        ))}
+        {thisKriya.exercizes &&
+          thisKriya.exercizes.map((ex, id) => (
+            <div
+              className={styles.ejercicio}
+              key={ex.id}
+              style={{
+                backgroundColor:
+                  ex.active < 0 ? 'lightblue' : ex.active === 0 && 'green',
+              }}
+            >
+              <span className={styles.sectionSpan}>{ex.section} </span>
+              <span className={styles.nameSpan}>{ex.exName}</span>
+              <span className={styles.durationSpan}>
+                {ex.exDuration} {ex.durationType}
+              </span>
+            </div>
+          ))}
       </div>
       {startedKriya && (
         <Button text='Volver a Empezar' actionOnClick={stopKriya} />

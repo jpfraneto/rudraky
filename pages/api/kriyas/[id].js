@@ -9,7 +9,6 @@ export default async function handler(req, res) {
     }
 
     case 'PUT': {
-      console.log('inside the PUT route');
       return updateKriya(req, res);
     }
 
@@ -24,21 +23,19 @@ const getKriya = async (req, res) => {
   const kriya = await db
     .collection('kriyas')
     .findOne({ _id: ObjectId(req.query.id) });
-  return res.json(kriya);
+  return res.json({ kriya });
 };
 
-// const addUser = async (req, res) => {
-//   try {
-//     let { db } = await connectToDatabase();
-//     await db.collection('users').insertOne(JSON.parse(req.body));
-//     return res.json({
-//       message: 'The user was added successfully',
-//       success: true,
-//     });
-//   } catch (error) {
-//     return res.json({
-//       message: new Error(error).message,
-//       success: false,
-//     });
-//   }
-// };
+const updateKriya = async (req, res) => {
+  let { db } = await connectToDatabase();
+  await db.collection('kriyas').updateOne(
+    {
+      _id: new ObjectId(req.body._id),
+    },
+    { $push: { exercizes: req.body.exercizes } }
+  );
+  return res.json({
+    message: `The kriya was updated successfully`,
+    success: true,
+  });
+};

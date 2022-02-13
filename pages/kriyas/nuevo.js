@@ -38,8 +38,6 @@ const NuevoKriya = () => {
   const router = useRouter();
 
   const handleKriyaSubmit = async () => {
-    //TODO: CHECK THE PROPER ORDER FOR THE CLASS: Invocación, Calentamiento, Kriya, Relajación, Meditación, Cierre
-
     if (missing.length === 0) {
       //send kriya to db
       const reqParams = {
@@ -49,10 +47,6 @@ const NuevoKriya = () => {
       };
       const response = await fetch('/api/kriyas', reqParams);
       const res = await response.json();
-      console.log(
-        'the response from the server after uploading the kriya is: ',
-        res
-      );
       router.push(`/kriyas/${res.kriyaId}`);
     }
   };
