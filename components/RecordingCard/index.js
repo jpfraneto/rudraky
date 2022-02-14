@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 import Link from 'next/link';
 import Moment from 'react-moment';
+import { FaRegCommentDots } from 'react-icons/fa';
 
 const RecordingCard = ({ recording }) => {
   return (
@@ -17,6 +18,12 @@ const RecordingCard = ({ recording }) => {
             <strong>Fecha: </strong>{' '}
             <Moment format={'DD/MM/YYYY hh:mm:ss'} date={recording.date} />
           </p>
+          <span>
+            <strong style={{ fontSize: '1.6rem' }}>
+              {recording.comments ? recording.comments.length : '0'}{' '}
+              <FaRegCommentDots />
+            </strong>
+          </span>
         </div>
       </Link>
     </div>

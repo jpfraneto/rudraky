@@ -48,9 +48,10 @@ const KriyaPreview = ({ kriya, setKriya, missing, setMissing }) => {
         return ex.section === deletedEx.section;
       });
       if (sectionsIntersection.length === 0) {
-        setMissing(prevMissing => {
-          return [...prevMissing, deletedEx.section];
-        });
+        if (deletedEx.section)
+          setMissing(prevMissing => {
+            return [...prevMissing, deletedEx.section];
+          });
       }
       return updatedKriya;
     });

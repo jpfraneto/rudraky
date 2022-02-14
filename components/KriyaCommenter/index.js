@@ -28,6 +28,9 @@ const KriyaCommenter = ({ thisKriya }) => {
       router.push('/kriyas/success');
     }
   };
+  const handleEndWithoutComment = async () => {
+    router.push('/kriyas/success');
+  };
   return (
     <div className={styles.blueBack}>
       <h3>Felicitaciones por terminar una nueva práctica!</h3>
@@ -50,12 +53,36 @@ const KriyaCommenter = ({ thisKriya }) => {
         {commentElement &&
         commentElement.comment &&
         commentElement.commentAuthor ? (
-          <Button
-            text='Agregar Comentario'
-            actionOnClick={submitKriyaCmmment}
-          />
+          <div
+            className={
+              commentElement &&
+              commentElement.comment &&
+              commentElement.commentAuthor
+                ? styles.visible
+                : styles.hidden
+            }
+          >
+            <Button
+              text='Agregar Comentario'
+              actionOnClick={submitKriyaCmmment}
+            />
+          </div>
         ) : (
-          <h2>Favor agrega un comentario y tu nombre para finalizar!</h2>
+          <div
+            className={
+              commentElement &&
+              commentElement.comment &&
+              commentElement.commentAuthor
+                ? styles.hidden
+                : styles.visible
+            }
+          >
+            <h2>Favor agrega un comentario y tu nombre para finalizar!</h2>
+            <Button
+              text='Terminar Sin Comentarios'
+              actionOnClick={handleEndWithoutComment}
+            />
+          </div>
         )}
       </div>
     </div>

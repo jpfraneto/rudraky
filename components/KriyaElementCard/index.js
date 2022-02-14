@@ -10,7 +10,10 @@ const KriyaElementCard = ({ kriya }) => {
           {' '}
           <h3>{kriya.name}</h3>
           <h5>Creado por {kriya.author}</h5>
-          <span className={styles.commentsElement}>
+          <span
+            style={{ fontSize: '1.6rem' }}
+            className={styles.commentsElement}
+          >
             {kriya.comments ? kriya.comments.length : '0'} <FaRegCommentDots />
           </span>
         </a>

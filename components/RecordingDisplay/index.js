@@ -1,6 +1,5 @@
 import Moment from 'react-moment';
 import styles from './styles.module.css';
-import Image from 'next/image';
 import Button from '../Button';
 import { useRouter } from 'next/router';
 import RecordingComments from '../RecordingComments';

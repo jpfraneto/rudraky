@@ -41,6 +41,10 @@ const KriyaDisplay = ({
     }
   };
 
+  const handleEditKriya = () => {
+    router.push(`/kriyas/${thisKriya._id}/edit`);
+  };
+
   return (
     <div className={styles.mainContainer}>
       <h2>
@@ -76,6 +80,7 @@ const KriyaDisplay = ({
       {!startedKriya && (
         <>
           <Button text='Empezar Kriya' actionOnClick={handleStartKriya} />
+          <Button text='Editar Kriya' actionOnClick={handleEditKriya} />
         </>
       )}
     </div>

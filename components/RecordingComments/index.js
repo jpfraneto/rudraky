@@ -27,7 +27,10 @@ const RecordingComments = ({ commentsProp }) => {
       const reqParams = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ recordingId: router.query.id, newComment }),
+        body: JSON.stringify({
+          recordingId: router.query.recordingId,
+          newComment,
+        }),
       };
       const res = await fetch(`/api/recordings`, reqParams);
       const data = await res.json();

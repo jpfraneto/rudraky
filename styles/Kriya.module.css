@@ -1,5 +1,5 @@
 .container {
-  background-color: pink;
+  background-color: var(--main-bg-color);
   min-height: calc(100vh - 44px);
   position: relative;
   display: flex;
