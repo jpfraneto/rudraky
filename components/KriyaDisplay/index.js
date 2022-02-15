@@ -1,8 +1,6 @@
 import styles from './styles.module.css';
-import KriyaElement from '../KriyaElement';
-import Link from 'next/link';
+
 import Button from '../Button';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 const KriyaDisplay = ({
@@ -14,7 +12,6 @@ const KriyaDisplay = ({
   setStartedKriya,
   startedKriya,
   setThisKriya,
-  myRef,
 }) => {
   const router = useRouter();
   const handleStartKriya = () => {
@@ -26,7 +23,6 @@ const KriyaDisplay = ({
     });
     setCurrentEx(thisKriya.exercizes[currentExIndex]);
     setShowStopwatch(true);
-    myRef.current.scrollIntoView();
   };
 
   const stopKriya = () => {

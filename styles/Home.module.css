@@ -5,6 +5,7 @@
   background-color: lightblue;
   background-position: center;
   height: calc(100vh - 44px);
+  position: relative;
 }
 
 .main {
@@ -40,4 +41,12 @@
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+.imageCaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: white;
+  z-index: 100;
 }

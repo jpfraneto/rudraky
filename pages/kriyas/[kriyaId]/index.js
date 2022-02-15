@@ -3,7 +3,7 @@ import ActiveKriyaDisplay from '../../../components/ActiveKriyaDisplay';
 import KriyaDisplay from '../../../components/KriyaDisplay';
 import KriyaDescription from '../../../components/KriyaDescription';
 import KriyaCommentsDisplay from '../../../components/KriyaCommentsDisplay';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { getCurrentUrl } from '../../../lib/functions';
 
 export async function getServerSideProps(context) {
@@ -24,13 +24,6 @@ const DisplayKriya = ({ fetchedKriya }) => {
   const [currentEx, setCurrentEx] = useState({});
   const [startedKriya, setStartedKriya] = useState(false);
 
-  const myRef = useRef(null);
-
-  const handleGetKriyasFromDB = async () => {
-    const res = await fetch('/api/kriyas');
-    const data = await res.json();
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.leftDiv}>
@@ -43,11 +36,10 @@ const DisplayKriya = ({ fetchedKriya }) => {
           setStartedKriya={setStartedKriya}
           startedKriya={startedKriya}
           setThisKriya={setThisKriya}
-          myRef={myRef}
         />
       </div>
       {(startedKriya || thisKriya.comments) && (
-        <div className={styles.rightDiv} ref={myRef}>
+        <div className={styles.rightDiv}>
           {startedKriya ? (
             <ActiveKriyaDisplay
               setThisKriya={setThisKriya}

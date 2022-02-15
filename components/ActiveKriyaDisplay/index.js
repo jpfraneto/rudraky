@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react/cjs/react.development';
+import { useState, useEffect } from 'react';
 import StopwatchContainer from '../StopwatchContainer';
 import Button from '../Button';
 import KriyaCommenter from '../KriyaCommenter';

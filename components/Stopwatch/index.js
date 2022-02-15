@@ -1,9 +1,7 @@
 import styles from './styles.module.css';
-import KriyaElement from '../KriyaElement';
-import { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import { useState, useEffect } from 'react';
 
-const Stopwatch = ({ currentEx, thisKriya, setThisKriya }) => {
+const Stopwatch = ({ currentEx }) => {
   const [start, setStart] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [started, setStarted] = useState(false);
