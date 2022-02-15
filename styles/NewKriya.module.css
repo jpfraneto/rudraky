@@ -9,3 +9,9 @@
   text-align: center;
   display: block;
 }
+
+@media only screen and (max-width: 1200px) {
+  .kriyaFormContainer {
+    flex-direction: column;
+  }
+}

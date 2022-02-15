@@ -37,7 +37,7 @@ const ActiveKriyaDisplay = ({
             <span className={styles.sectionSpan}>{currentEx.section}</span>
             <span className={styles.exName}>{currentEx.exName}</span>
           </h2>
-          <p>{currentEx.description}</p>
+          <p>{currentEx.descripcion}</p>
 
           <StopwatchContainer
             currentEx={currentEx}

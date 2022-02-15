@@ -39,9 +39,6 @@ const Stopwatch = ({ currentEx }) => {
       {targetDuration <= elapsedTime && (
         <div className={styles.messagesContainer}>
           <p className={styles.timeAlert}>Tiempo!</p>
-          <p className={styles.subText}>
-            Tus alumnos están pa la cagá, córtales!
-          </p>
         </div>
       )}
       <div className={styles.controlsContainer}>
