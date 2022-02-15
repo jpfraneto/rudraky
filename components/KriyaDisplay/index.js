@@ -14,6 +14,7 @@ const KriyaDisplay = ({
   setStartedKriya,
   startedKriya,
   setThisKriya,
+  myRef,
 }) => {
   const router = useRouter();
   const handleStartKriya = () => {
@@ -25,6 +26,7 @@ const KriyaDisplay = ({
     });
     setCurrentEx(thisKriya.exercizes[currentExIndex]);
     setShowStopwatch(true);
+    myRef.current.scrollIntoView();
   };
 
   const stopKriya = () => {

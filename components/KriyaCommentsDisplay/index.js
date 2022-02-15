@@ -6,7 +6,7 @@ const KriyaCommentsDisplay = ({ comments }) => {
     <div className={styles.container}>
       {comments && (
         <div>
-          <h3 className={styles.fixedText}>Comentarios de este kriya</h3>
+          <h3 className={styles.fixedText}>Comentarios</h3>
           {comments.map(comment => {
             return (
               <div className={styles.commentContainer} key={comment.id}>

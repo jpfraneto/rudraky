@@ -1,7 +1,7 @@
 .commentsContainer {
-  width: 100%;
+  min-width: 333px;
   border: solid black 1px;
-  margin-top: 22px;
+  margin: 22px auto 10px;
   padding: 4px;
 }
 

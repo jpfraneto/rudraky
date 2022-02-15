@@ -1,5 +1,4 @@
 .container {
-  height: calc(100vh - 44px);
   padding: 12px 8px;
   position: relative;
   text-align: center;
@@ -19,22 +18,15 @@
   width: fit-content;
   height: fit-content;
   border: solid black 2px;
+  margin: 10px auto;
 }
 
 .kriyasDisplay {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: fit-content;
   max-height: 80vh;
   overflow-y: scroll;
   width: 80%;
   margin: 0 auto;
-}
-
-.newKriyaBtn {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
 }

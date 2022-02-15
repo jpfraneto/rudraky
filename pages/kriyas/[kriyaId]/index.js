@@ -18,12 +18,13 @@ export async function getServerSideProps(context) {
 }
 
 const DisplayKriya = ({ fetchedKriya }) => {
-  console.log('the fetched kriya is: ', fetchedKriya);
   const [showStopwatch, setShowStopwatch] = useState(false);
   const [currentExIndex, setCurrentExIndex] = useState(0);
   const [thisKriya, setThisKriya] = useState(fetchedKriya.kriya);
   const [currentEx, setCurrentEx] = useState({});
   const [startedKriya, setStartedKriya] = useState(false);
+
+  const myRef = useRef(null);
 
   const handleGetKriyasFromDB = async () => {
     const res = await fetch('/api/kriyas');
@@ -42,10 +43,11 @@ const DisplayKriya = ({ fetchedKriya }) => {
           setStartedKriya={setStartedKriya}
           startedKriya={startedKriya}
           setThisKriya={setThisKriya}
+          myRef={myRef}
         />
       </div>
       {(startedKriya || thisKriya.comments) && (
-        <div className={styles.rightDiv}>
+        <div className={styles.rightDiv} ref={myRef}>
           {startedKriya ? (
             <ActiveKriyaDisplay
               setThisKriya={setThisKriya}

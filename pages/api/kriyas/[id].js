@@ -28,16 +28,18 @@ const getKriya = async (req, res) => {
 
 const updateKriya = async (req, res) => {
   let { db } = await connectToDatabase();
-  console.log('here is for updating the kriya', req.body);
   req.body.updatedAt = req.body.updatedAt || [];
   req.body.updatedAt.push(new Date().getTime());
-  console.log('the new req.body is: ', req.body);
   await db.collection('kriyas').updateOne(
     {
       _id: new ObjectId(req.body._id),
     },
     {
-      $set: { exercizes: req.body.exercizes, updatedAt: req.body.updatedAt },
+      $set: {
+        exercizes: req.body.exercizes,
+        updatedAt: req.body.updatedAt,
+        description: req.body.description,
+      },
     }
   );
   return res.json({

@@ -6,7 +6,7 @@ import { FaRegCommentDots } from 'react-icons/fa';
 const RecordingCard = ({ recording }) => {
   return (
     <div className={styles.recordingCardContainer} key={recording._id}>
-      <Link href={`/recordings/${recording._id}`}>
+      <Link href={`/recordings/${recording._id}`} passHref>
         <div>
           <p>
             <strong>Profesor: </strong> {recording.profesor}

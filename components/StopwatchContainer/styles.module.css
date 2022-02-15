@@ -1,13 +1,14 @@
 .cronometro {
   text-align: center;
   margin: 22px auto;
-  width: 60%;
-  height: 50%;
+  max-width: 60%;
+  min-width: 444px;
   font-size: 2rem;
   background-color: tomato;
   border: 2px solid black;
   padding: 10px;
   border-radius: 5px;
+  min-height: fit-content;
 }
 
 .closeBtn {

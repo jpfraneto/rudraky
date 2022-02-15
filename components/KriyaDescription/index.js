@@ -1,7 +1,9 @@
+import styles from './styles.module.css';
+
 const KriyaDescription = ({ description }) => {
   return (
-    <div>
-      <h3>Here goes the description of this kriya</h3>
+    <div className={styles.descriptionContainer}>
+      <h3>Descripción:</h3>
       <p>{description}</p>
     </div>
   );

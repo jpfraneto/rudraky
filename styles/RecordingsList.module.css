@@ -1,6 +1,7 @@
 .outerDiv {
   margin: 22px;
   text-align: center;
+  min-width: 400px;
 }
 
 .recordingsList {

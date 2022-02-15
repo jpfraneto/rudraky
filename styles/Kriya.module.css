@@ -10,9 +10,10 @@
 }
 
 .rightDiv {
-  padding: 33px;
-  width: 50%;
+  padding: 8px;
+  width: 70%;
   text-align: center;
+  margin: 0 auto;
 }
 
 .innerWrapper {
@@ -62,4 +63,10 @@
   background-color: salmon;
   margin: 20px auto;
   border: solid black 2px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    flex-direction: column;
+  }
 }
